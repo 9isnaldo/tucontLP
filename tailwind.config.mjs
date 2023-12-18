@@ -22,7 +22,7 @@ export default {
 					DEFAULT: '#21E6C1'
 				},
 				'sextiary': {
-					DEFAULT: '#e2f2f4'
+					DEFAULT: '#E2F3F5'
 				}
 			},
 		},
