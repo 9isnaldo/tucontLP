@@ -28,8 +28,24 @@ const { title } = Astro.props;
 	</body>
 </html>
 <style is:global>
+	:root {
+	--rich-black: #06081E;
+	--oxford-blue: #0D1439;
+	--primary: #1f4287;
+	--secondary: #3D5AF1;
+	--tertiary: #278ea5;
+	--quaternary: #22D1EE;
+	--quintenary: #21E6C1;
+	--sextiary: #e2f2f4;
+	}
+
 	html {
 		font-family: 'Inter', sans-serif;
 		background: #06081E;
+	}
+
+	a:hover {
+		color: var(--secondary);
+		text-decoration: underline;
 	}
 </style>
