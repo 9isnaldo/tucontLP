@@ -1,8 +1,73 @@
 ---
-
+const menus = [
+    {
+        label: 'Sobre',
+        children: [
+            {
+                label: 'Partners',
+                link: '/partners'
+            },
+            {
+                label: 'Ecossistema',
+                link: '/ecossistema'
+            }
+        ]
+    },
+    {
+        label: 'Suporte',
+        children: [
+            {
+                label: 'Entre em contato',
+                link: '/contato'
+            },
+            {
+                label: 'FAQ',
+                link: '/faq'
+            }
+        ]
+    }
+]
 ---
-<div class="flex flex-column bg-rich-black h-screen">
-    <div>
-        
+<div class="flex flex-col space-y-4 bg-rich-black container text-sextiary p-4 lg:flex-row">
+    <div class="flex flex-col lg:flex-row lg:space-x-4 lg:items-center">
+        <img class="w-[65px] h-[65px]" src="logo.webp" alt="" width="65" height="65">
+        <div class="lg:space-y-4">
+            <h2 class="text-[22px] font-black">Mantenha-se no <strong class="text-quaternary uppercase">Tucont</strong></h2>
+            <p class="lg:w-1/2">
+                Se inscreva na nossa lista de e-mail e tenha acesso a notícias e novidades do projeto em primeira mão
+            </p>
+        </div>
     </div>
+    <div class="flex flex-col space-y-4">
+        <div class="grid grid-cols-2">
+            { 
+                menus.map(group => (
+                    <div class="flex flex-col mt-3">
+                        <h2 class="font-extrabold text-2xl">{ group.label }</h2>
+                        <ul class="flex flex-col mt-2 space-y-2">
+                            {
+                                group.children.map(item => (
+                                    <li class="font-semibold">
+                                        <a href={item.link}>{item.label}</a>
+                                    </li>
+                                ))
+                            }
+                        </ul>
+                    </div>
+                ))
+            }
+        </div>
+        <div class="flex space-x-4">
+            <a href="">
+                <img src="/icons/instagram.webp" alt="">
+            </a>
+            <a href="">
+                <img src="/icons/instagram.webp" alt="">
+            </a>
+            <a href="">
+                <img src="/icons/instagram.webp" alt="">
+            </a>
+        </div>
+    </div>
+    
 </div>
