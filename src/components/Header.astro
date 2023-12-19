@@ -13,7 +13,9 @@ const menu = [
 <header class="flex flex-col sticky top-0 z-10 bg-rich-black">
     <div class="flex flex-col justify-between items-center container mx-auto lg:flex-row py-4">
         <div class="flex w-full justify-between">
-            <img src="tucont-logo.png" alt="Logo" class="w-48" />
+            <a href="/">
+                <img src="tucont-logo.png" alt="Logo" class="w-48" />
+            </a>
             <svg id="svg-menu" class="lg:hidden ham hamRotate ham4" viewBox="0 0 100 100" width="60">
                 <path
                       class="line stroke-quaternary top"
@@ -29,7 +31,7 @@ const menu = [
         <nav class="flex flex-col w-full divide-y-2 divide-quaternary/40 hidden lg:flex lg:flex-row lg:divide-y-0 lg:divide-x-[0.75px] lg:bg-quaternary/5 lg:px-6 lg:rounded-lg lg:border-quaternary/30 lg:border-[0.75px] lg:w-fit py-4 lg:py-2" id="menuContainer">
             {
                 menu.map((item) => (
-                    <a class="text-quaternary/80 font-medium text-sm py-4 lg:py-0 lg:px-4" href={item.link}>{item.label}</a>
+                    <a class="text-quaternary/80 font-bold text-base lg:text-sm py-4 lg:py-0 lg:px-4" href={item.link}>{item.label}</a>
                 ))
             }
         </nav>
