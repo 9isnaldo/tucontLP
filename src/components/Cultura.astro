@@ -17,7 +17,7 @@ import FeatureCard from "./small-components/Feature-card.astro";
     <div class="w-full h-full flex flex-col md:flex-row pt-14">
         <div class="w-full md:w-2/5">
             <div class="mx-auto max-w-[400px] py-8 flex justify-center card-tucont h-full">
-                <img src="/icons/mascote.svg" alt="Tucont">
+                <img class="tucont-img" src="/icons/mascote.svg" alt="Tucont">
             </div>
         </div>
         <div class="w-full md:w-3/5 mt-12 md:mt-0">
@@ -42,5 +42,9 @@ import FeatureCard from "./small-components/Feature-card.astro";
         box-shadow: 0 8px 32px 0 rgba( 34,209,238, 0.05 );
         backdrop-filter: blur( 12px );
         -webkit-backdrop-filter: blur( 12px );
+    }
+
+    .tucont-img {
+        filter: contrast(1.3);
     }
 </style>

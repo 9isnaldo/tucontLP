@@ -1,8 +1,8 @@
 ---
-const { type, required } = Astro.props;
+const { type, required, customClass } = Astro.props;
 ---
-<div class="flex flex-row border-[0.7px] border-sextiary/60 rounded-l-full rounded-r-full py-1 px-1">
+<div class:list={["flex flex-row border-[0.7px] border-sextiary/60 rounded-l-full rounded-r-full py-1 px-1", customClass]}>
     <slot name="left"></slot>
-    <input {...(required ? {required: 'required'} : {})} type={type} class="focus:outline-none flex-grow text-sextiary/80 px-2 placeholder:text-sextiary/30 font-semibold bg-transparent" placeholder="Seu E-mail" />
+    <input {...(required ? {required: 'required'} : {})} type={type} class="focus:outline-none flex-grow text-sextiary/80 px-2 placeholder:text-sextiary/30 font-semibold bg-transparent" placeholder="Seu e-mail" />
     <slot name="right"></slot>
 </div>
