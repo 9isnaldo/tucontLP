@@ -1,0 +1,51 @@
+---
+const platforms = [
+    {
+        label: 'App Store',
+        icon: '/icons/apple.svg'
+    },
+    {
+        label: 'Play Store',
+        icon: '/icons/play-store.svg'
+    },
+    {
+        label: 'Desktop',
+        icon: '/icons/desktop.svg'
+    }
+]
+---
+<section class="py-14 bg-[url('/line-bg.svg')]">
+    <div class="flex flex-col space-y-8 container mx-auto">
+        <div class="ssm:px-2 sm:px-14 md:px-0">
+            <h1 class="flex flex-col ssm:text-3xl sm:text-4xl md:text-5xl font-extrabold text-sextiary/80">
+                Em breve para
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-quaternary/80 to-secondary/80">todas as plataformas</span>
+            </h1>
+        </div>
+        <div class="flex justify-center">
+            <div class="grid grid-cols-1 space-y-8 md:space-y-0 md:space-x-8 md:grid-cols-3">
+                {
+                    platforms.map((item) => (
+                        <div class="flex space-x-4 lg:space-x-6 items-center p-2 rounded-xl card-platforms">
+                            <img src={item.icon} alt={item.label} />
+                            <h2 class="font-bold text-sextiary/80 text-2xl lg:text-4xl">{item.label}</h2>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .card-platforms {
+        background: rgb(31,66,135, 0.2);
+        background: linear-gradient(135deg, rgba(31,66,135,0.16) 0%, rgba(255,255,255,0.08) 100%);
+        border-image: linear-gradient(180deg, rgba(34,209,238,1) 0%, rgba(34,209,238,0) 100%);
+        border-style: solid;
+        border-width: 0.5px;
+        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+        backdrop-filter: blur( 3px );
+        -webkit-backdrop-filter: blur( 3px );
+    }
+</style>
