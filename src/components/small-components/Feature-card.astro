@@ -1,7 +1,7 @@
 ---
 const { title, fontSize, fontWeight, fontColor, borderColor, letterSpacing, customClass } = Astro.props
 ---
-<div class:list={[`w-full text-center ${fontWeight ? fontWeight : 'font-normal'} ${fontSize ? fontSize : 'text-sm'} ${letterSpacing ? letterSpacing : 'trackingWide'}
+<div class:list={[`w-full text-center ${fontWeight ? fontWeight : 'font-normal'} ${fontSize ? fontSize : 'text-sm'} ${letterSpacing ? letterSpacing : 'tracking-wide'}
         py-2 rounded-full ${fontColor ? fontColor : 'text-sextiary/90'} glass-small-card-border border-quintenary ${customClass}`]}
     >
     {title}
