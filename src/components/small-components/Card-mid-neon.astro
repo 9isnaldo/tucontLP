@@ -4,8 +4,8 @@ const { title, description, svg, width, height, customClass } = Astro.props
 ---
 <div class:list={[`h-[335px] w-[311px] flex flex-col justify-around text-3xl font-bold underline text-sextiary-color rounded-[35px] glass-background-mid-card p-8 ${customClass}`]}>
 
-    <FeatureCard title={title} ></FeatureCard>
-    <p set:html={description} class="text-sextiary/90 font-semibold text-base text-center"></p>
+    <FeatureCard title={title} fontWeight="font-semibold" letterSpacing="tracking-[0.035em]" fontColor="text-sextiary/70"></FeatureCard>
+    <p set:html={description} class="text-sextiary/90 font-semibold text-[0.85rem] leading-6 text-center"></p>
     <img src={svg} alt="Ícone card" class="mx-auto">
 </div>
 

@@ -3,6 +3,9 @@ export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
 		extend: {
+			screens: {
+				'ssm': '300px'
+			},
 			colors: {
 				'rich-black': '#06081E',
 				'oxford-blue': '#0D1439',
