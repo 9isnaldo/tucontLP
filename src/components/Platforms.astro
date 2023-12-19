@@ -14,7 +14,7 @@ const platforms = [
     }
 ]
 ---
-<section class="py-14 bg-[url('/line-bg.svg')]">
+<section class="py-14 bg-[url('/line-bg.svg')] bg-repeat bg-cover bg-center">
     <div class="flex flex-col space-y-8 container mx-auto">
         <div class="ssm:px-2 sm:px-14 md:px-0">
             <h1 class="flex flex-col ssm:text-3xl sm:text-4xl md:text-5xl font-extrabold text-sextiary/80">
@@ -34,6 +34,20 @@ const platforms = [
                 }
             </div>
         </div>
+        <div class="flex justify-center text-sextiary/80">
+            <div class="flex flex-col space-y-6 bg-oxford-blue/10 border-quaternary border-2 rounded-xl card-lead p-12">
+                <div class="flex flex-col">
+                    <h1 class="text-xl lg:text-3xl font-extrabold">Quer fazer parte desse ecossistema?</h1>
+                    <p class="text-base lg:text-lg mt-1">Se inscreva na nossa lista de espera</p>
+                </div>
+                <form class="flex flex-col justify-center lg:flex-row">
+                    <div class="pl-4 border-quaternary/50 border-[0.7px] rounded-lg h-10 lg:rounded-none lg:rounded-l-xl flex items-center w-full lg:w-8/12">
+                        <input type="email" required class="focus:outline-none bg-transparent flex-grow placeholder:text-sextiary/30 font-medium" placeholder="E-mail">
+                    </div>
+                    <button type="submit" class="text-white font-semibold bg-primary p-2 mt-2 rounded-xl lg:rounded-none lg:mt-0">Junte-se ao futuro</button>
+                </form>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -47,5 +61,10 @@ const platforms = [
         box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
         backdrop-filter: blur( 3px );
         -webkit-backdrop-filter: blur( 3px );
+    }
+
+    .card-lead {
+        backdrop-filter: blur( 5px );
+        -webkit-backdrop-filter: blur( 5px );
     }
 </style>
