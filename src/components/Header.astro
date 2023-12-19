@@ -1,18 +1,93 @@
 ---
+const menu = [
+    {
+        label: 'Partners',
+        link: '/partners',
+    },
+    {
+        label: 'Ecossistema',
+        link: '/ecossistema'
+    }
+]
 ---
 <header class="flex flex-col sticky top-0 z-10 bg-rich-black">
-    <div class="flex justify-between container mx-auto py-4">
-        <img src="tucont-logo.png" alt="Logo" />
-        <div class="flex space-x-8 items-center divide-quaternary/40 divide-x-2 text-quaternary/80 font-medium text-sm bg-quaternary/5 border-quaternary/30 border-[0.75px] rounded-lg">
-            <a href="" class="flex justify-center text-center w-40">Partners</a>
-            <a href="" class="flex justify-center text-center w-40">Ecossistema</a>
+    <div class="flex flex-col justify-between items-center container mx-auto lg:flex-row py-4">
+        <div class="flex w-full justify-between">
+            <img src="tucont-logo.png" alt="Logo" class="w-48" />
+            <svg id="svg-menu" class="lg:hidden ham hamRotate ham4" viewBox="0 0 100 100" width="60">
+                <path
+                      class="line stroke-quaternary top"
+                      d="m 70,33 h -40 c 0,0 -8.5,-0.149796 -8.5,8.5 0,8.649796 8.5,8.5 8.5,8.5 h 20 v -20" />
+                <path
+                      class="line stroke-quaternary middle"
+                      d="m 70,50 h -40" />
+                <path
+                      class="line stroke-quaternary bottom"
+                      d="m 30,67 h 40 c 0,0 8.5,0.149796 8.5,-8.5 0,-8.649796 -8.5,-8.5 -8.5,-8.5 h -20 v 20" />
+            </svg>
         </div>
+        <nav class="flex flex-col w-full divide-y-2 divide-quaternary/40 hidden lg:flex lg:flex-row lg:divide-y-0 lg:divide-x-[0.75px] lg:bg-quaternary/5 lg:px-6 lg:rounded-lg lg:border-quaternary/30 lg:border-[0.75px] lg:w-fit py-4 lg:py-2" id="menuContainer">
+            {
+                menu.map((item) => (
+                    <a class="text-quaternary/80 font-medium text-sm py-4 lg:py-0 lg:px-4" href={item.link}>{item.label}</a>
+                ))
+            }
+        </nav>
     </div>
     <div class="separate-line h-[1px] w-full"></div>
 </header>
+<script>
+    const svgMenu = document.getElementById('svg-menu')
+    const menuContainer = document.getElementById('menuContainer')
+
+    svgMenu.addEventListener('click', () => {
+        svgMenu.classList.toggle('active')
+        menuContainer.classList.toggle('hidden')
+    })
+</script>
 <style>
     .separate-line {
         background: rgb(226,243,245);
         background: linear-gradient(90deg, rgba(226,243,245,0) 0%, rgba(34,209,238,1) 50%, rgba(255,255,255,0) 100%);
+    }
+
+    .ham {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        transition: transform 400ms;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-box-sizing: content-box !important;
+        -moz-box-sizing: content-box !important;
+        box-sizing: content-box !important;
+    }
+
+    .hamRotate.active {
+        transform: rotate(45deg);
+    }
+
+    .line {
+        fill:none;
+        transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+        stroke-width:5.5;
+        stroke-linecap:round;
+    }
+
+    .ham4 .top {
+        stroke-dasharray: 40 121;
+    }
+
+    .ham4 .bottom {
+        stroke-dasharray: 40 121;
+    }
+
+    .ham4.active .top {
+        stroke-dashoffset: -68px;
+    }
+
+    .ham4.active .bottom {
+        stroke-dashoffset: -68px;
     }
 </style>
