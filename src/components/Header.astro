@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import logoTucont from '../images/tucont-logo.webp'
+
 const menu = [
     {
         label: 'Partners',
@@ -14,7 +17,7 @@ const menu = [
     <div class="flex flex-col justify-between items-center container mx-auto lg:flex-row py-4">
         <div class="flex w-full justify-between">
             <a href="/">
-                <img src="tucont-logo.png" alt="Logo" class="w-48" />
+                <Image src={logoTucont} alt='Logo da Tucont' class:list={'h-12 w-40'} />
             </a>
             <svg id="svg-menu" class="lg:hidden ham hamRotate ham4" viewBox="0 0 100 100" width="60">
                 <path

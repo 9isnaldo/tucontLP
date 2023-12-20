@@ -1,20 +1,27 @@
 ---
+import { Image } from "astro:assets";
+
+
+import apple from '../images/icons/apple.svg'
+import playStore from '../images/icons/play-store.svg'
+import desktop from '../images/icons/desktop.svg'
+
 const platforms = [
     {
         label: 'App Store',
-        icon: '/icons/apple.svg'
+        icon: apple
     },
     {
         label: 'Play Store',
-        icon: '/icons/play-store.svg'
+        icon: playStore
     },
     {
         label: 'Desktop',
-        icon: '/icons/desktop.svg'
+        icon: desktop
     }
 ]
 ---
-<section class="py-14 bg-[url('/line-bg.svg')] bg-repeat bg-cover bg-center">
+<section class="py-14 bg-[url('/line-bg.svg')] bg-no-repeat bg-cover bg-bottom">
     <div class="flex flex-col space-y-8 container mx-auto">
         <div class="ssm:px-2 sm:px-14 md:px-0">
             <h1 class="flex flex-col ssm:text-3xl sm:text-4xl md:text-5xl font-extrabold text-sextiary/80">
@@ -27,7 +34,7 @@ const platforms = [
                 {
                     platforms.map((item) => (
                         <div class="flex space-x-4 lg:space-x-6 items-center p-2 rounded-xl card-platforms">
-                            <img src={item.icon} alt={item.label} />
+                            <Image src={item.icon} alt={item.label} />
                             <h2 class="font-bold text-sextiary/80 text-2xl lg:text-4xl">{item.label}</h2>
                         </div>
                     ))
@@ -35,13 +42,13 @@ const platforms = [
             </div>
         </div>
         <div class="flex justify-center text-sextiary/80">
-            <div class="flex flex-col space-y-6 bg-oxford-blue/10 border-quaternary border-[0.5px] rounded-xl card-lead p-12">
+            <div class="flex flex-col space-y-6 bg-oxford-blue/10 border-quaternary/20 border-[0.5px] rounded-xl card-lead p-12">
                 <div class="flex flex-col">
                     <h1 class="text-xl lg:text-3xl font-extrabold">Quer fazer parte desse ecossistema?</h1>
                     <p class="text-base lg:text-lg mt-1">Se inscreva na nossa lista de espera</p>
                 </div>
                 <form class="flex flex-col justify-center lg:flex-row">
-                    <div class="pl-4 border-quaternary/50 border-[0.7px] rounded-lg h-10 lg:rounded-none lg:rounded-l-xl flex items-center w-full lg:w-8/12">
+                    <div class="pl-4 border-quaternary/30 border-[0.7px] rounded-lg h-10 lg:rounded-none lg:rounded-l-xl flex items-center w-full lg:w-8/12">
                         <input type="email" required class="focus:outline-none bg-transparent flex-grow placeholder:text-sextiary/30 font-medium" placeholder="E-mail">
                     </div>
                     <button type="submit" class="text-white font-semibold bg-primary p-2 mt-2 rounded-xl lg:rounded-none lg:rounded-r-xl lg:mt-0">Junte-se ao futuro</button>

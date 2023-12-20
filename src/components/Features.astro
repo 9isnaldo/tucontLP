@@ -2,23 +2,27 @@
 import CardMidNeon from "./small-components/Card-mid-neon.astro";
 import FeatureCard from "./small-components/Feature-card.astro";
 
+import shop from '../images/icons/shop.svg'
+import pc from '../images/icons/pc.svg'
+import relatorios from '../images/icons/relatorios.svg'
+
 const features = [
     {
         title: 'Serviços contábeis',
         description: 'Na <strong>Tucont</strong> você tem direito a Contabilidade e Paralegal as a service, além de BPO financeiro',
-        svg: '/icons/shop.svg',
+        svg: shop,
         customClass: 'mx-auto'
     },
     {
         title: 'Sistema completo',
         description: 'Tenha módulos para gestão financeira, emissão de notas fiscais e estoque',
-        svg: '/icons/pc.svg',
+        svg: pc,
         customClass: 'mx-auto'
     },
     {
         title: 'Data analytics',
         description: 'Tenha relatórios completos para medir a saúde do seu negócio com nossos módulos de Cashflow e DRE',
-        svg: '/icons/relatorios.svg',
+        svg: relatorios,
         customClass: 'mx-auto'
     },
 ]
