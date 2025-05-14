@@ -1,67 +1,224 @@
 ---
 import { Image } from 'astro:assets';
-import logoTucont from '../images/tucont.webp'
+import logoTucont from '../images/tucont.svg';
 
 const menu = [
     {
-        label: 'Partners',
-        link: '/partners',
+        label: 'Soluções',
+        link: '#',
+        submenu: [
+            { label: 'Abrir Empresa', link: 'https://rouvbymulgc.typeform.com/to/OSIekGSL?typeform-source=www.tucont.com.br', target: '_blank'},
+            { label: 'Contabilidade, Tributos, Folha e Legalição', link: '/contabilidade' },
+            { label: 'Plataforma para NFs e Financeiro', link: '/plataforma' },
+            { label: 'BPO Financeiro', link: '/bpo' },
+            { label: 'Jornada Empreendedora', link: '/jornada' }
+        ]
+    },
+    {
+        label: 'Para Contabilidades',
+        link: '#agentes'
+    },
+    {
+        label: 'Para Quem Somos',
+        link: '#',
+        submenu: [
+            { label: 'Empreendedores Iniciantes', link: '/empreendedores-iniciantes' },
+            { label: 'Para Startups', link: '/para-startups' },
+            { label: 'Prestadores de Serviços', link: '/prestadores-serviços' },
+            { label: 'Profissionais da Saúde', link: '/profissionais-saude' },
+            { label: 'Para PMEs', link: '/pmes' },
+            { label: 'Para MEIS', link: '/meis' },   
+        ]
     },
     {
         label: 'Ecossistema',
-        link: '/ecossistema'
+        link: '#',
+        submenu: [
+            { label: 'Balcão do Empresário', link: 'https://www.balcaodoempresario.com.br/', target: '_blank' },
+            { label: 'Poder Contábil', link: 'https://www.podercontabil.com.br/', target: '_blank' }
+        ]
     },
     {
         label: 'Blog',
-        link: 'https://blog.tucont.com.br'
-    },
-    {
-        label: 'Acessar',
-        link: 'https://app.tucont.com.br/auth/login'
+        link: 'https://blog.tucont.com.br',
+        target: '_blank'
     }
-]
+];
 ---
-<header class="flex flex-col sticky top-0 z-10 bg-rich-black">
-    <div class="flex flex-col justify-between items-center container mx-auto lg:flex-row py-4">
-        <div class="flex w-full justify-between">
+<header class="flex flex-col sticky top-0 z-50 bg-[#0D1439]">
+    <div class="flex flex-col justify-between items-center container mx-auto lg:flex-row py-4 gap-4">
+        <div class="flex w-full justify-between items-center">
             <a href="/">
-                <Image src={logoTucont} alt='Logo da Tucont' class:list={'h-12 w-40'} />
+                <Image src={logoTucont} alt="Logo da Tucont" width={160} height={40} />
             </a>
-            <svg id="svg-menu" class="lg:hidden ham hamRotate ham4" viewBox="0 0 100 100" width="60">
-                <path
-                      class="line stroke-quaternary top"
-                      d="m 70,33 h -40 c 0,0 -8.5,-0.149796 -8.5,8.5 0,8.649796 8.5,8.5 8.5,8.5 h 20 v -20" />
-                <path
-                      class="line stroke-quaternary middle"
-                      d="m 70,50 h -40" />
-                <path
-                      class="line stroke-quaternary bottom"
-                      d="m 30,67 h 40 c 0,0 8.5,0.149796 8.5,-8.5 0,-8.649796 -8.5,-8.5 -8.5,-8.5 h -20 v 20" />
-            </svg>
+            <div class="flex items-center gap-4">
+                <nav class="hidden lg:flex items-center gap-0 px-1 rounded-lg menu-container bg-[linear-gradient(120deg,rgba(255,120,0,0.15)_0%,rgba(255,80,0,0.08)_50%,rgba(255,120,0,0.15)_100%)] h-[48px]">
+                    {menu.map((item, index) => (
+                        <div class="relative group h-full">
+                            <a 
+                                class="text-white font-medium text-base px-6 h-full flex items-center hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-orange-400 hover:via-amber-300 hover:to-orange-500 transition-all duration-300 relative gap-1" 
+                                href={item.link}
+                                target={item.target || undefined}
+                                rel={item.target ? 'noopener noreferrer' : undefined}
+                            >
+                                {item.label}
+                                {item.submenu && (
+                                    <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                )}
+                            </a>
+                            
+                            {item.submenu && (
+                                <div class="absolute left-1/2 transform -translate-x-1/2 mt-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-out z-50">
+                                    <div class="bg-[#122687] rounded-lg shadow-xl overflow-hidden">
+                                        <div class="p-1">
+                                            {item.submenu.map((subitem) => (
+                                                <a 
+                                                    href={subitem.link} 
+                                                    class="block px-4 py-3 text-sm text-white hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-orange-400 hover:via-amber-300 hover:to-orange-500 transition-all duration-200 group/item"
+                                                    target={subitem.target || undefined}
+                                                    rel={subitem.target ? 'noopener noreferrer' : undefined}
+                                                >
+                                                    <div class="flex items-center">
+                                                        <span>
+                                                            {subitem.label}
+                                                        </span>
+                                                        <svg class="ml-auto w-4 h-4 opacity-0 group-hover/item:opacity-100 transition-opacity duration-300 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="h-px bg-gray-500 mt-2 last:hidden"></div>
+                                                </a>
+                                            ))}
+                                        </div>
+                                    </div>
+                                    <div class="absolute -top-1 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-[#5f5f5f]"></div>
+                                </div>
+                            )}
+                            
+                            {index < menu.length - 1 && (
+                                <span class="absolute right-0 top-1/2 transform -translate-y-1/2 h-6 w-px bg-gradient-to-b from-transparent via-orange-400 to-transparent"></span>
+                            )}
+                        </div>
+                    ))}
+                </nav>
+                <a 
+                    href="/planos" 
+                    class="hidden lg:flex items-center justify-center text-white font-medium text-base px-8 py-3 rounded-xl btn-plans"
+                >
+                    Planos
+                </a>
+                <a 
+                    href="https://app.tucont.com.br/auth/login" 
+                    class="hidden lg:flex items-center justify-center text-white font-medium text-base px-8 py-3 rounded-xl btn-primary"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Acessar
+                </a>
+
+            </div>
         </div>
-        <nav class="flex flex-col w-full divide-y-2 divide-quaternary/40 hidden lg:flex lg:flex-row lg:divide-y-0 lg:divide-x-[0.75px] lg:bg-quaternary/5 lg:px-6 lg:rounded-lg lg:border-quaternary/30 lg:border-[0.75px] lg:w-fit py-4 lg:py-2" id="menuContainer">
-            {
-                menu.map((item) => (
-                    <a class="text-quaternary/80 font-bold text-base lg:text-sm py-4 lg:py-0 lg:px-4 lg:w-48 lg:text-center" href={item.link}>{item.label}</a>
-                ))
-            }
+        
+        <!-- Menu Mobile -->
+        <nav class="flex flex-col w-full divide-y divide-orange-400/40 lg:hidden bg-[linear-gradient(120deg,rgba(255,120,0,0.15)_0%,rgba(255,80,0,0.08)_50%,rgba(255,120,0,0.15)_100%)] rounded-lg" id="menuContainer">
+            {menu.map((item) => {
+                const randomId = Math.random().toString(36).substring(2, 9);
+                return (
+                    <div class="relative">
+                     
+                        {item.submenu && (
+                            <div id={randomId} class="submenu-mobile hidden bg-[#5f5f5f] rounded-lg mx-4 mb-2 mt-1 overflow-hidden">
+                                {item.submenu.map((subitem) => (
+                                    <a 
+                                        href={subitem.link} 
+                                        class="block px-4 py-3 text-sm text-white hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-orange-400 hover:via-amber-300 hover:to-orange-500 transition-all duration-200"
+                                        target={subitem.target || undefined}
+                                        rel={subitem.target ? 'noopener noreferrer' : undefined}
+                                    >
+                                        {subitem.label}
+                                        <div class="h-px bg-gray-500 mt-2 last:hidden"></div>
+                                    </a>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                )
+            })}
+            <a 
+                href="/planos" 
+                class="btn-plans text-base font-medium px-8 py-3 rounded-xl my-4 text-center"
+            >
+                Planos
+            </a>
+            <a 
+                href="https://app.tucont.com.br/auth/login" 
+                class="btn-primary text-base font-medium px-8 py-3 rounded-xl my-4 text-center"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Acessar
+            </a>
         </nav>
     </div>
-    <div class="separate-line h-[1px] w-full"></div>
+    <div class="h-px w-full bg-gradient-to-r from-transparent via-orange-500 to-transparent"></div>
 </header>
-<script>
-    const svgMenu = document.getElementById('svg-menu')
-    const menuContainer = document.getElementById('menuContainer')
 
-    svgMenu.addEventListener('click', () => {
-        svgMenu.classList.toggle('active')
-        menuContainer.classList.toggle('hidden')
-    })
+<script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+        const svgMenu = document.getElementById('svg-menu');
+        const menuContainer = document.getElementById('menuContainer');
+
+        // Toggle menu mobile
+        if (svgMenu && menuContainer) {
+            svgMenu.addEventListener('click', () => {
+                svgMenu.classList.toggle('active');
+                menuContainer.classList.toggle('hidden');
+            });
+        }
+
+        // Toggle submenus mobile
+        document.querySelectorAll('[data-submenu]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.dataset.submenu) {
+                    e.preventDefault();
+                    const submenu = document.getElementById(this.dataset.submenu);
+                    if (submenu) {
+                        submenu.classList.toggle('hidden');
+                        const icon = this.querySelector('svg');
+                        if (icon) {
+                            icon.classList.toggle('rotate-180');
+                        }
+                    }
+                }
+            });
+        });
+    });
 </script>
+
 <style>
-    .separate-line {
-        background: rgb(226,243,245);
-        background: linear-gradient(90deg, rgba(226,243,245,0) 0%, rgba(34,209,238,1) 50%, rgba(255,255,255,0) 100%);
+    .menu-container {
+        position: relative;
+        border: none;
+    }
+
+    .menu-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 0.5rem;
+        padding: 1px;
+        background: linear-gradient(135deg, rgba(255,145,0,0.5), rgba(255,94,0,0.3), rgba(255,145,0,0.5));
+        -webkit-mask: 
+            linear-gradient(#fff 0 0) content-box, 
+            linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
     }
 
     .ham {
@@ -72,8 +229,6 @@ const menu = [
         -webkit-user-select: none;
         -ms-user-select: none;
         user-select: none;
-        -webkit-box-sizing: content-box !important;
-        -moz-box-sizing: content-box !important;
         box-sizing: content-box !important;
     }
 
@@ -103,4 +258,154 @@ const menu = [
     .ham4.active .bottom {
         stroke-dashoffset: -68px;
     }
+
+    /* Botão Padrão Reutilizável */
+    .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none !important;
+        color: white !important;
+        font-size: 1rem;
+        font-weight: 500;
+        padding: 0.75rem 2rem;
+        min-width: 180px;
+        height: 48px;
+        border-radius: 12px;
+        background: linear-gradient(to right, #f59e0b 20%, #ea580c 80%);
+        box-shadow: 0 0 8px rgba(255, 165, 0, 0.5),
+                    0 0 15px rgba(255, 100, 0, 0.3);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .btn-primary:hover, 
+    .btn-primary:focus {
+        transform: scale(1.05);
+        box-shadow: 0 0 12px rgba(255, 195, 0, 0.7),
+                    0 0 25px rgba(255, 120, 0, 0.5),
+                    0 0 35px rgba(255, 80, 0, 0.3);
+        filter: brightness(1.1);
+        text-decoration: none !important;
+    }
+
+    /* Efeito de brilho interno no hover */
+    .btn-primary::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+            circle, 
+            rgba(255, 230, 0, 0.2) 0%, 
+            transparent 70%
+        );
+        transform: scale(0);
+        transition: transform 0.5s ease;
+        opacity: 0;
+    }
+
+    .btn-primary:hover::before {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    /* Botão Planos - Estilo baseado no dropdown (#5f5f5f) */
+    .btn-plans {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none !important;
+        color: white !important;
+        font-size: 1rem;
+        font-weight: 500;
+        padding: 0.75rem 2rem;
+        min-width: 180px;
+        height: 48px;
+        border-radius: 12px;
+        background: linear-gradient(to right, #243dbd 20%, #122687 80%);
+        box-shadow: 0 0 8px rgba(100, 100, 100, 0.5),
+                    0 0 15px rgba(80, 80, 80, 0.3);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .btn-plans:hover, 
+    .btn-plans:focus {
+        transform: scale(1.05);
+        box-shadow: 0 0 12px rgba(5, 20, 104, 0.7),
+                    0 0 25px rgba(29, 26, 218, 0.5),
+                    0 0 35px rgba(4, 7, 196, 0.3);
+        filter: brightness(1.1);
+        text-decoration: none !important;
+        background: linear-gradient(to right, #1905ce 20%, #0a17cc 80%);
+    }
+
+    /* Efeito de brilho interno no hover */
+    .btn-plans::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+            circle, 
+            rgba(255, 255, 255, 0.15) 0%, 
+            transparent 70%
+        );
+        transform: scale(0);
+        transition: transform 0.5s ease;
+        opacity: 0;
+    }
+
+    .btn-plans:hover::before {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    /* Efeito de borda sutil no hover */
+    .btn-plans::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 12px;
+        padding: 1px;
+        background: linear-gradient(135deg, rgba(150, 150, 150, 0.26),rgba(200, 200, 200, 0.2), rgba(150, 150, 150, 0.4));
+        -webkit-mask: 
+            linear-gradient(#fff 0 0) content-box, 
+            linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .btn-plans:hover::after {
+        opacity: 1;
+    }
+
+    .rotate-180 {
+        transform: rotate(180deg);
+        
+    }
+        .separate-line {
+        background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(255,120,0,1) 50%, rgba(0,0,0,0) 100%);
+        box-shadow: 0 0 15px rgba(255, 120, 0, 0.8);
+    }
+
 </style>

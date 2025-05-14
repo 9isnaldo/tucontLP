@@ -1,0 +1,203 @@
+---
+// src/components/PlanosComponent.astro
+const { categorias } = Astro.props;
+
+// Estado inicial
+let categoriaAtiva = "servicos";
+---
+
+<div class="py-16">
+  <div class="container mx-auto">
+    <!-- Botões de navegação -->
+    <div class="flex justify-center gap-4 mb-12 flex-wrap">
+      {Object.keys(categorias).map((key) => {
+        const categoria = categorias[key];
+        return (
+          <button
+            data-categoria={key}
+            class={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
+              categoriaAtiva === key
+                ? 'text-white bg-gradient-to-r from-amber-500 from-20% to-orange-600 to-80% soft-neon-button'
+                : 'btn-plans-inactive text-white border-none'
+            }`}
+          >
+            {categoria.titulo}
+          </button>
+        );
+      })}
+    </div>
+
+    <!-- Tabelas de planos  -->
+    <div class="flex flex-col items-center">
+      <div class="w-full">
+        {Object.keys(categorias).map((key) => {
+          const categoria = categorias[key];
+          return (
+            <div data-planos={key} class={categoriaAtiva === key ? 'block' : 'hidden'}>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+                {categoria.planos.map((plano) => (
+                  <div class="flex flex-col bg-[#122687] rounded-2xl shadow-xl overflow-hidden border border-orange-500 min-w-[320px] w-full">
+                    <div class="p-8 text-white text-center border-b-0">
+                      <h2 class="text-2xl md:text-3xl font-extrabold mb-1 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 from-10% via-amber-300 via-40% to-orange-500 to-90% soft-neon-text">{plano.titulo}</h2>
+                      <p class="text-white/90 text-lg">{plano.subtitulo}</p>
+                      
+                      <div class="mt-6 flex items-end justify-center">
+                        <div class="mr-2">
+                          <span class="text-sm line-through text-gray-400">{plano.precoOriginal}</span>
+                          <p class="text-4xl font-bold text-white">{plano.precoPromocional}</p>
+                        </div>
+                        <span class="text-sm mb-1 text-gray-400">{plano.periodo}</span>
+                      </div>
+                      
+                      <button class="mt-6 w-full max-w-[240px] mx-auto text-white text-base font-medium bg-gradient-to-r from-amber-500 from-20% to-orange-600 to-80% px-8 py-3 rounded-xl hover:brightness-105 transition-all duration-300 soft-neon-button">
+                        Contrate agora
+                      </button>
+                    </div>
+
+                    <div class="p-4 pl-4">
+                      <ul class="space-y-4">
+                        {plano.beneficios.map((beneficio) => (
+                          <li class="flex items-start gap-2">
+                            <span class="text-[#FF8C00] text-xl">✔</span>
+                            <span class="text-white/90">{beneficio}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('[data-categoria]');
+    
+    buttons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        const target = e.currentTarget;
+        const categoria = target.getAttribute('data-categoria');
+        
+        // Esconde todas as seções
+        document.querySelectorAll('[data-planos]').forEach(section => {
+          section.classList.add('hidden');
+        });
+        
+        // Mostra apenas a seção clicada
+        const seçãoAtiva = document.querySelector(`[data-planos="${categoria}"]`);
+        if (seçãoAtiva) {
+          seçãoAtiva.classList.remove('hidden');
+        }
+        
+        // Atualiza o estado ativo dos botões
+        buttons.forEach(btn => {
+          btn.classList.remove('bg-gradient-to-r', 'from-amber-500', 'from-20%', 'to-orange-600', 'to-80%', 'soft-neon-button');
+          btn.classList.add('btn-plans-inactive', 'text-white', 'border-none');
+        });
+        
+        target.classList.remove('btn-plans-inactive', 'text-white', 'border-none');
+        target.classList.add('bg-gradient-to-r', 'from-amber-500', 'from-20%', 'to-orange-600', 'to-80%', 'soft-neon-button');
+      });
+    });
+  });
+</script>
+
+<style is:global>
+  .soft-neon-text {
+    text-shadow: 0 0 4px rgba(255, 145, 0, 0.4), 
+                 0 0 8px rgba(255, 94, 0, 0.3);
+  }
+
+  .soft-neon-button {
+    box-shadow: 0 0 6px rgba(255, 145, 0, 0.4), 
+               0 0 12px rgba(255, 94, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  .soft-neon-button:hover {
+    box-shadow: 0 0 8px rgba(255, 145, 0, 0.6), 
+               0 0 16px rgba(255, 94, 0, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .transition-all {
+    transition-property: all;
+  }
+
+  .duration-300 {
+    transition-duration: 300ms;
+  }
+
+  /* Estilo para botões inativos (baseado no botão Planos) */
+  .btn-plans-inactive {
+    background: linear-gradient(to right, #6f6f6f 20%, #5f5f5f 80%);
+    box-shadow: 0 0 8px rgba(100, 100, 100, 0.5),
+                0 0 15px rgba(80, 80, 80, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-plans-inactive:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(120, 120, 120, 0.7),
+                0 0 25px rgba(100, 100, 100, 0.5),
+                0 0 35px rgba(80, 80, 80, 0.3);
+    filter: brightness(1.1);
+    background: linear-gradient(to right, #7f7f7f 20%, #6f6f6f 80%);
+  }
+
+  /* Efeito de brilho interno no hover */
+  .btn-plans-inactive::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle, 
+        rgba(255, 255, 255, 0.15) 0%, 
+        transparent 70%
+    );
+    transform: scale(0);
+    transition: transform 0.5s ease;
+    opacity: 0;
+  }
+
+  .btn-plans-inactive:hover::before {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  /* Efeito de borda sutil no hover */
+  .btn-plans-inactive::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 12px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(150, 150, 150, 0.4), rgba(200, 200, 200, 0.2), rgba(150, 150, 150, 0.4));
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .btn-plans-inactive:hover::after {
+    opacity: 1;
+  }
+</style>

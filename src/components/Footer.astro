@@ -1,123 +1,116 @@
 ---
-import RoundedInput from "./small-components/RoundedInput.astro";
 import { Image } from "astro:assets";
-
-import instagram from '../images/icons/instagram.svg'
-import linkedin from '../images/icons/linkedin.svg'
-import facebook from '../images/icons/facebook.svg'
-import mascote from "../images/tucano-tucont.webp"
-
-const menus = [
-    {
-        label: 'Sobre',
-        children: [
-            {
-                label: 'Partners',
-                link: '/partners'
-            },
-            {
-                label: 'Ecossistema',
-                link: '/ecossistema'
-            }
-        ]
-    },
-    {
-        label: 'Suporte',
-        children: [
-            {
-                label: 'Entre em contato',
-                link: '/contato'
-            },
-            {
-                label: 'FAQ',
-                link: '/faq'
-            }
-        ]
-    }
-]
-
-const socialMedias = [
-    {
-        label: 'Instagram',
-        image: instagram,
-        link: '/startup'
-    },
-    {
-        label: 'LinkedIn',
-        image: linkedin,
-        link: '/startup'
-    },
-    {
-        label: 'Facebook',
-        image: facebook,
-        link: '/startup'
-    }
-]
+import instagram from '../images/icons/instagram.svg';
+import facebook from '../images/icons/facebook.svg';
+import mascote from "../images/tucano-tucont.svg";
 ---
-<footer class="flex flex-col space-y-8 bg-rich-black text-sextiary/80 container mx-auto py-10">
-    <div class="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-24 lg:flex-row">
-        <div class="flex flex-col space-y-4 lg:space-x-6">
-            <div class="flex flex-col space-y-4 lg:items-center lg:space-x-6 lg:flex-row">
-                <Image src={mascote} alt="Imagem mascote tucano" width="65" height="65" />
-                <div class="flex flex-col space-y-2 lg:space-y-4">
-                    <h2 class="text-[22px] font-black">Mantenha-se no <strong class="text-quaternary uppercase">Tucont</strong></h2>
-                    <p>
-                        Se inscreva na nossa lista de e-mail e tenha acesso a notícias e novidades do projeto em primeira mão
-                    </p>
+
+<footer>
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between">
+            <!-- Coluna da logo (esquerda) -->
+            <div class="md:w-1/3 mb-8 md:mb-3">
+                <div class="flex items-center">
+                    <Image src={mascote} alt="Mascote TuCont" width="65" height="65" class="mr-3" />
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 from-10% via-amber-300 via-40% to-orange-500 to-90% soft-neon-text text-4xl font-bold">Tucont</span>
+                </div>
+                <p class="mt-4 text-white">
+                    A maior transformação do mercado de contabilidade nacional, unindo tecnologia e expertise humana para o sucesso do seu negócio.
+                </p>
+                
+                <div class="flex space-x-4 mt-6">
+                    <a href="https://web.facebook.com/profile.php?id=61560717810719&_rdc=1&_rdr#" target="_blank" class="p-2 rounded-full bg-gradient-to-r from-amber-500 from-20% to-orange-600 to-80%">
+                        <Image src={facebook} alt="Facebook" width={24} height={24} />
+                    </a>
+                    <a href="https://www.instagram.com/tucont.contabilidade" target="_blank" class="p-2 rounded-full bg-gradient-to-r from-amber-500 from-20% to-orange-600 to-80%">
+                        <Image src={instagram} alt="Instagram" width={24} height={24} />
+                    </a>
                 </div>
             </div>
-            <form class="pt-4 xl:pt-6" action="#">
-                <RoundedInput customClass="max-w-[400px]" type="email" required={true}>
-                    <button type="submit" slot="right" class="bg-sextiary/20 flex items-center justify-center h-10 w-10 lg:h-14 lg:w-14 rounded-full">
-                        <svg width="35" height="24" viewBox="0 0 35 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M2 10.5C1.17157 10.5 0.5 11.1716 0.5 12C0.5 12.8284 1.17157 13.5 2 13.5L2 10.5ZM34.0607 13.0607C34.6464 12.4749 34.6464 11.5251 34.0607 10.9393L24.5147 1.3934C23.9289 0.807614 22.9792 0.807614 22.3934 1.3934C21.8076 1.97919 21.8076 2.92893 22.3934 3.51472L30.8787 12L22.3934 20.4853C21.8076 21.0711 21.8076 22.0208 22.3934 22.6066C22.9792 23.1924 23.9289 23.1924 24.5147 22.6066L34.0607 13.0607ZM2 13.5L33 13.5L33 10.5L2 10.5L2 13.5Z" fill="#E2F3F5" fill-opacity="0.7"/>
-                        </svg>
-                    </button>
-                </RoundedInput>
-            </form>
-        </div>
-        <div class="flex flex-col space-y-8">
-            <div class="grid grid-cols-2 lg:flex lg:justify-between">
-                { 
-                    menus.map(group => (
-                        <div class="flex flex-col mt-3">
-                            <h2 class="font-extrabold text-2xl">{ group.label }</h2>
-                            <ul class="flex flex-col mt-2 space-y-2">
-                                {
-                                    group.children.map(item => (
-                                        <li class="font-semibold">
-                                            <a href={item.link}>{item.label}</a>
-                                        </li>
-                                    ))
-                                }
-                            </ul>
-                        </div>
-                    ))
-                }
+
+            <!-- Grupo de 3 colunas alinhadas à direita -->
+            <div class="flex gap-8 md:gap-10">
+                <!-- Coluna Soluções -->
+                <div>
+                    <h4 class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 from-10% via-amber-300 via-40% to-orange-500 to-90% soft-neon-text text-lg font-bold mb-3">SOLUÇÕES</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-white hover:text-amber-300 transition-colors text-sm">Avenida Legal</a></li>
+                        <li><a href="#" class="text-white hover:text-amber-300 transition-colors text-sm">Avenida de Negócios</a></li>
+                        <li><a href="#" class="text-white hover:text-amber-300 transition-colors text-sm">Jornada Empresarial</a></li>
+                        <li><a href="#" class="text-white hover:text-amber-300 transition-colors text-sm">Marketplace</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna Empresa -->
+                <div>
+                    <h4 class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 from-10% via-amber-300 via-40% to-orange-500 to-90% soft-neon-text text-lg font-bold mb-3">EMPRESA</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-white hover:text-amber-300 transition-colors text-sm">Sobre</a></li>
+                        <li><a href="#" class="text-white hover:text-amber-300 transition-colors text-sm">Blog</a></li>
+                        <li><a href="#" class="text-white hover:text-amber-300 transition-colors text-sm">Carreiras</a></li>
+                        <li><a href="#" class="text-white hover:text-amber-300 transition-colors text-sm">Contato</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna Agentes -->
+                <div>
+                    <h4 class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 from-10% via-amber-300 via-40% to-orange-500 to-90% soft-neon-text text-lg font-bold mb-3">AGENTES</h4>
+                    <ul class="space-y-2">
+                        <li><a href="https://rouvbymulgc.typeform.com/to/OSIekGSL?typeform-source=www.tucont.com.br" target="_blank" class="text-white hover:text-amber-300 transition-colors text-sm">Seja um Agente</a></li>
+                        <li><a href="#" class="text-white hover:text-amber-300 transition-colors text-sm">Modelo de Negócio</a></li>
+                        <li><a href="#" class="text-white hover:text-amber-300 transition-colors text-sm">Treinamentos</a></li>
+                        <li><a href="#" class="text-white hover:text-amber-300 transition-colors text-sm">Histórias de Sucesso</a></li>
+                    </ul>
+                </div>
             </div>
-            <ul class="flex items-center space-x-4 lg:justify-around">
-                {
-                    socialMedias.map(socialMedia => (
-                        <li class="flex">
-                            <a class="p-3 rounded-full bg-social-media" href={socialMedia.link}>
-                                <Image src={socialMedia.image} alt={socialMedia.label} />
-                            </a>
-                        </li>
-                    ))
-                }
-            </ul>
+        </div>
+
+        <!-- Rodapé inferior -->
+        <div class="mt-0 pt-0">
+            <div class="h-[1px] w-full mb-6" style="background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(255,145,0,0.5) 50%, rgba(0,0,0,0) 100%);"></div>
+            <p class="text-white text-sm text-left">
+                Tucont Contabilidade, somos uma DNVB - Digital Native Vertical Brand, empresa humanizada, que desde o nascimento é digital.<br>
+                Nossa Plataforma utiliza Tecnologia Proprietária, Educação e práticas Corporativas, BPO Financeiro e de Contabilidade, para facilitar e participar da sua Jornada Empreendedora.<br>
+                De empreendedores para empreendedores, destrave o empreendedorismo!
+            </p>
         </div>
     </div>
-    <ul class="flex justify-around text-xs md:text-base">
-        <li>&copy Tucont</li>
-        <li><a href="/politica-de-privacidade">Política de privacidade</a></li>
-        <li><a href="/termos-de-uso">Termos de uso</a></li>
-    </ul>
 </footer>
-
 <style>
-    .bg-social-media {
-        background: rgb(226,243,245);
-        background: linear-gradient(135deg, rgba(226,243,245,0.2) 0%, rgba(0,0,0,0.2) 100%);
+    /* Efeitos de gradiente e hover */
+    .soft-neon-text {
+        text-shadow: 0 0 4px rgba(255, 145, 0, 0.4), 
+                     0 0 8px rgba(255, 94, 0, 0.3);
+    }
+    
+    /* Remove completamente o sublinhado */
+    a, a:hover {
+        text-decoration: none !important;
+    }
+    
+    .hover\:text-amber-300:hover {
+        color: #fbbf24;
+        transition: color 0.2s ease;
+    }
+    
+    /* Responsividade */
+    @media (max-width: 768px) {
+        .flex-col {
+            gap: 2rem;
+        }
+        
+        .gap-8 {
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .flex > div {
+            width: 100%;
+        }
+        
+        .text-4xl {
+            font-size: 2rem;
+            line-height: 2.5rem;
+        }
     }
 </style>

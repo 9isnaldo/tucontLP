@@ -1,0 +1,332 @@
+---
+import { Image } from 'astro:assets';
+import Frame1 from '../images/depoimentos/Frame 1.svg';
+import Frame2 from '../images/depoimentos/Frame 2.svg';
+import Frame3 from '../images/depoimentos/Frame 3.svg';
+---
+
+<section class="testimonials">
+    <div class="container mx-auto">
+        <div class="section-title text-center">
+            <div class="subtitle text-[1.1rem] font-semibold inline-block">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 from-10% via-amber-300 via-40% to-orange-500 to-90% soft-neon-text">Histórias de transformação</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white">
+                Empresas que <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 from-10% via-amber-300 via-40% to-orange-500 to-90% soft-neon-text">revolucionaram</span> sua gestão
+            </h1>
+            <p class="mt-2 md:mt-3 text-[1.35rem] leading-6 font-semibold text-white/90">
+                Descubra como empreendedores visionários transformaram seus negócios ao migrar para nossa plataforma.
+            </p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card fade-up">
+                <div class="testimonial-content">
+                    "A TuCont transformou completamente minha visão sobre contabilidade. Deixou de ser um centro de custo e burocracia para se tornar uma ferramenta estratégica que impulsionou nosso crescimento em 38% no último ano."
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <Image src={Frame1} alt="Logo da Tucont" width={40} height={40} />
+                    </div>
+                    <div class="author-info">
+                        <h4>Camila Rodrigues</h4>
+                        <p>CEO, Innovate Solutions</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card fade-up">
+                <div class="testimonial-content">
+                    "Os frameworks da Jornada Empresarial foram decisivos para identificarmos gargalos fiscais que drenavam nosso capital. Após implementar as soluções sugeridas, reduzimos nossa carga tributária em 22% de forma totalmente legal e segura."
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <Image src={Frame3} alt="Logo da Tucont" width={40} height={40} />
+                    </div>
+                    <div class="author-info">
+                        <h4>Ricardo Oliveira</h4>
+                        <p>CFO, Future Retail</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card fade-up">
+                <div class="testimonial-content">
+                    "Mais que um contador, a TuCont se tornou um parceiro estratégico do nosso negócio. As conexões que fizemos através do marketplace exclusivo nos abriram portas para novos mercados e parcerias que jamais teríamos acesso de outra forma."
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <Image src={Frame2} alt="Logo da Tucont" width={40} height={40} />
+                    </div>
+                    <div class="author-info">
+                        <h4>Mariana Alves</h4>
+                        <p>Fundadora, Green Ventures</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta relative overflow-hidden" style="padding: 4rem 7%;">
+    <div class="relative z-10 text-center">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 from-10% via-amber-300 via-40% to-orange-500 to-90% soft-neon-text">Transforme a contabilidade em estratégia</span>
+        </h1>
+        <p class="mt-4 md:mt-6 text-[1.35rem] leading-6 font-semibold text-white/90 max-w-[700px] mx-auto">
+            Junte-se a centenas de empresas visionárias que já transformaram sua gestão contábil em uma poderosa alavanca de crescimento e inovação.
+        </p>
+        <div class="flex justify-center mt-6 mb-8">
+            <a href="#" class="btn-primary text-base font-medium px-8 py-3 rounded-xl my-4 text-center">
+                Quero ser Tucont
+            </a>
+        </div>
+    </div>
+    <!-- Linha adicionada no final -->
+<div class="h-px w-full bg-gradient-to-r from-transparent via-orange-500 to-transparent"></div>
+</section>
+
+<style>
+    /* Testimonials Section */
+    .testimonials {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .section-title {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .subtitle {
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 0.5rem 1rem;
+        margin-bottom: 1.5rem;
+        border-radius: 8px;
+    }
+
+    .testimonials h1 {
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+    }
+
+    .testimonials p {
+        line-height: 1.7;
+    }
+
+    .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 3rem;
+        margin-top: 6rem;
+    }
+
+    .testimonial-card {
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 2.5rem;
+        border-radius: 20px;
+        box-shadow: 0 15px 50px rgba(255, 145, 0, 0.05);
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .testimonial-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 30px 60px rgba(255, 145, 0, 0.1);
+    }
+
+    .testimonial-content {
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    .testimonial-author {
+        display: flex;
+        align-items: center;
+    }
+
+    .author-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.1);
+        margin-right: 1rem;
+        overflow: hidden;
+    }
+
+    .author-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .author-info h4 {
+        font-weight: 700;
+        margin-bottom: 0.2rem;
+        color: white;
+    }
+
+    .author-info p {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* CTA Section - Mantendo estilos originais de tamanho */
+    .cta {
+        text-align: center;
+        position: relative;
+    }
+
+    /* Efeitos Neon Suaves */
+    .soft-neon-text {
+        text-shadow: 0 0 4px rgba(255, 145, 0, 0.4), 
+                     0 0 8px rgba(255, 94, 0, 0.3);
+    }
+
+    /* Botão Padrão Reutilizável */
+    .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none !important;
+        color: white !important;
+        font-size: 1rem;
+        font-weight: 500;
+        padding: 0.75rem 2rem;
+        min-width: 180px;
+        height: 48px;
+        border-radius: 12px;
+        background: linear-gradient(to right, #f59e0b 20%, #ea580c 80%);
+        box-shadow: 0 0 8px rgba(255, 165, 0, 0.5),
+                    0 0 15px rgba(255, 100, 0, 0.3);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .btn-primary:hover, 
+    .btn-primary:focus {
+        transform: scale(1.05);
+        box-shadow: 0 0 12px rgba(255, 195, 0, 0.7),
+                    0 0 25px rgba(255, 120, 0, 0.5),
+                    0 0 35px rgba(255, 80, 0, 0.3);
+        filter: brightness(1.1);
+        text-decoration: none !important;
+    }
+
+    /* Efeito de brilho interno no hover */
+    .btn-primary::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+            circle, 
+            rgba(255, 230, 0, 0.2) 0%, 
+            transparent 70%
+        );
+        transform: scale(0);
+        transition: transform 0.5s ease;
+        opacity: 0;
+    }
+
+    .btn-primary:hover::before {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    /* Novos estilos para os blobs laterais */
+    .cta-blob {
+        position: absolute;
+        z-index: 1;
+        opacity: 0.1;
+        filter: blur(60px);
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+    }
+
+    .cta-blob-left {
+        left: -10%;
+        top: 50%;
+        transform: translateY(-50%);
+        background: linear-gradient(to right, #f59e0b, #f97316);
+    }
+
+    .cta-blob-right {
+        right: -10%;
+        top: 50%;
+        transform: translateY(-50%);
+        background: linear-gradient(to right, #f97316, #f59e0b);
+    }
+
+    /* Classes de utilitárias */
+    .relative {
+        position: relative;
+    }
+    
+    .z-10 {
+        z-index: 10;
+    }
+    
+    .mx-auto {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .mt-12 {
+        margin-top: 3rem;
+    }
+    
+    .container {
+        width: 100%;
+        padding-right: 1.5rem;
+        padding-left: 1.5rem;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    
+    @media (min-width: 640px) {
+        .container {
+            max-width: 640px;
+        }
+    }
+    
+    @media (min-width: 768px) {
+        .container {
+            max-width: 768px;
+        }
+    }
+    
+    @media (min-width: 1024px) {
+        .container {
+            max-width: 1024px;
+        }
+    }
+    
+    @media (min-width: 1280px) {
+        .container {
+            max-width: 1280px;
+        }
+    }
+    
+    @media (min-width: 1536px) {
+        .container {
+            max-width: 1536px;
+        }
+    }
+
+    /* Estilo para a linha separadora */
+    .separate-line {
+        background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(255,145,0,1) 50%, rgba(0,0,0,0) 100%);
+    }
+</style>
