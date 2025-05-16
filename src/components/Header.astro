@@ -45,140 +45,196 @@ const menu = [
     }
 ];
 ---
-<header class="flex flex-col sticky top-0 z-50 bg-[#0D1439]">
-    <div class="flex flex-col justify-between items-center container mx-auto lg:flex-row py-4 gap-4">
-        <div class="flex w-full justify-between items-center">
-            <a href="/">
-                <Image src={logoTucont} alt="Logo da Tucont" width={160} height={40} />
+<header class="sticky top-0 z-50 bg-[#E3E8FF] shadow-xl">
+    <!-- Barra colorida no topo -->
+    <div class="h-1.5 w-full bg-gradient-to-r from-[#FF7B00] via-[#FFD700] to-[#122687] animate-gradient-x"></div>
+    
+    <div class="container mx-auto px-4">
+        <div class="flex justify-between items-center py-3">
+            <!-- Logo com efeito -->
+            <a href="/" class="flex items-center group">
+                <Image src={logoTucont} alt="Logo da Tucont" width={160} height={40} class="group-hover:scale-105 transition-transform duration-300" />
             </a>
-            <div class="flex items-center gap-4">
-                <nav class="hidden lg:flex items-center gap-0 px-1 rounded-lg menu-container bg-[linear-gradient(120deg,rgba(255,120,0,0.15)_0%,rgba(255,80,0,0.08)_50%,rgba(255,120,0,0.15)_100%)] h-[48px]">
-                    {menu.map((item, index) => (
-                        <div class="relative group h-full">
+
+            <!-- Menu Desktop -->
+            <nav class="hidden lg:flex items-center space-x-5">
+                {menu.map((item, index) => (
+                    <div class="relative group">
+                        <a 
+                            href={item.link} 
+                            target={item.target || undefined}
+                            rel={item.target ? 'noopener noreferrer' : undefined}
+                            class="px-2 py-3 font-bold text-[#0D1439] hover:text-[#FF7B00] transition-all duration-300 flex items-center relative"
+                        >
+                            {item.label}
+                            {item.submenu && (
+                                <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            )}
+                            <span class="absolute bottom-2 left-1/2 transform -translate-x-1/2 h-0.5 w-0 bg-[#FF7B00] group-hover:w-3/4 transition-all duration-300"></span>
+                        </a>
+
+                        {item.submenu && (
+                            <div class="absolute left-0 mt-0 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-out z-50 transform translate-y-1">
+                                <div class="bg-white rounded-lg shadow-2xl overflow-hidden border border-gray-100">
+                                    <div class="p-2 space-y-1">
+                                        {item.submenu.map((subitem) => (
+                                            <a 
+                                                href={subitem.link} 
+                                                class="block px-4 py-3 text-sm font-medium text-[#0D1439] hover:bg-[#FF7B00]/10 hover:text-[#FF7B00] rounded-lg transition-all duration-200 group/item relative"
+                                                target={subitem.target || undefined}
+                                                rel={subitem.target ? 'noopener noreferrer' : undefined}
+                                            >
+                                                <div class="flex items-center">
+                                                    <span class="group-hover/item:translate-x-2 transition-transform duration-200">
+                                                        {subitem.label}
+                                                    </span>
+                                                    <svg class="ml-auto w-4 h-4 opacity-0 group-hover/item:opacity-100 transition-opacity duration-300 text-[#FF7B00]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                                    </svg>
+                                                </div>
+                                                <span class="absolute left-0 top-1/2 transform -translate-y-1/2 h-3/5 w-0.5 bg-[#FF7B00] opacity-0 group-hover/item:opacity-100 transition-opacity duration-200 rounded-full"></span>
+                                            </a>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                ))}
+
+                <div class="flex items-center ml-4 space-x-4">
+                    <a 
+                        href="/planos" 
+                        class="px-6 py-3 rounded-lg font-bold text-white bg-gradient-to-r from-[#122687] to-[#0D1439] hover:from-[#0D1439] hover:to-[#122687] transition-all duration-500 shadow-lg hover:shadow-xl hover:scale-[1.02] flex items-center relative overflow-hidden min-w-[180px] h-12 justify-center"
+                    >
+                        <span class="relative z-10 flex items-center">
+                            Planos
+                        </span>
+                        <span class="absolute inset-0 bg-gradient-to-r from-[#0D1439] to-[#122687] opacity-0 hover:opacity-100 transition-opacity duration-300"></span>
+                    </a>
+                    <a 
+                        href="https://app.tucont.com.br/auth/login" 
+                        class="px-6 py-3 rounded-lg font-bold text-white bg-gradient-to-r from-[#FF7B00] to-[#FF4D00] hover:from-[#FF4D00] hover:to-[#FF7B00] transition-all duration-500 shadow-lg hover:shadow-xl hover:scale-[1.02] flex items-center relative overflow-hidden min-w-[180px] h-12 justify-center"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <span class="relative z-10 flex items-center">
+                            Acessar
+                        </span>
+                        <span class="absolute inset-0 bg-gradient-to-r from-[#FF4D00] to-[#FF7B00] opacity-0 hover:opacity-100 transition-opacity duration-300"></span>
+                    </a>
+                </div>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button class="lg:hidden p-2 rounded-lg text-[#0D1439] hover:bg-[#FF7B00]/10 focus:outline-none transition-colors duration-300" id="mobileMenuButton">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="lg:hidden hidden bg-white rounded-xl shadow-2xl mt-2 p-4 border border-gray-100" id="mobileMenu">
+            <div class="space-y-2">
+                {menu.map((item) => {
+                    const randomId = Math.random().toString(36).substring(2, 9);
+                    return (
+                        <div class="relative">
                             <a 
-                                class="text-white font-medium text-base px-6 h-full flex items-center hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-orange-400 hover:via-amber-300 hover:to-orange-500 transition-all duration-300 relative gap-1" 
-                                href={item.link}
+                                href={item.submenu ? '#' : item.link} 
+                                class={`flex items-center justify-between px-4 py-3 rounded-lg font-bold text-[#0D1439] ${item.submenu ? 'hover:bg-[#FF7B00]/10' : 'hover:bg-gray-50'} transition-colors duration-200`}
                                 target={item.target || undefined}
                                 rel={item.target ? 'noopener noreferrer' : undefined}
+                                data-submenu={item.submenu ? randomId : undefined}
                             >
-                                {item.label}
+                                <span class="flex items-center">
+                                    {item.label}
+                                </span>
                                 {item.submenu && (
-                                    <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                     </svg>
                                 )}
                             </a>
-                            
+
                             {item.submenu && (
-                                <div class="absolute left-1/2 transform -translate-x-1/2 mt-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-out z-50">
-                                    <div class="bg-[#122687] rounded-lg shadow-xl overflow-hidden">
-                                        <div class="p-1">
-                                            {item.submenu.map((subitem) => (
-                                                <a 
-                                                    href={subitem.link} 
-                                                    class="block px-4 py-3 text-sm text-white hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-orange-400 hover:via-amber-300 hover:to-orange-500 transition-all duration-200 group/item"
-                                                    target={subitem.target || undefined}
-                                                    rel={subitem.target ? 'noopener noreferrer' : undefined}
-                                                >
-                                                    <div class="flex items-center">
-                                                        <span>
-                                                            {subitem.label}
-                                                        </span>
-                                                        <svg class="ml-auto w-4 h-4 opacity-0 group-hover/item:opacity-100 transition-opacity duration-300 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                                        </svg>
-                                                    </div>
-                                                    <div class="h-px bg-gray-500 mt-2 last:hidden"></div>
-                                                </a>
-                                            ))}
-                                        </div>
-                                    </div>
-                                    <div class="absolute -top-1 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-[#5f5f5f]"></div>
+                                <div id={randomId} class="hidden pl-6 mt-1 space-y-1 border-l-2 border-[#FF7B00]">
+                                    {item.submenu.map((subitem) => (
+                                        <a 
+                                            href={subitem.link} 
+                                            class="block px-4 py-2.5 text-sm font-medium text-[#0D1439] hover:bg-[#FF7B00]/10 hover:text-[#FF7B00] rounded-lg transition-colors duration-200 flex items-center"
+                                            target={subitem.target || undefined}
+                                            rel={subitem.target ? 'noopener noreferrer' : undefined}
+                                        >
+                                            <span class="w-1.5 h-1.5 bg-[#FF7B00] rounded-full mr-2"></span>
+                                            {subitem.label}
+                                        </a>
+                                    ))}
                                 </div>
                             )}
-                            
-                            {index < menu.length - 1 && (
-                                <span class="absolute right-0 top-1/2 transform -translate-y-1/2 h-6 w-px bg-gradient-to-b from-transparent via-orange-400 to-transparent"></span>
-                            )}
                         </div>
-                    ))}
-                </nav>
+                    );
+                })}
+            </div>
+
+            <div class="mt-4 pt-4 border-t border-gray-200 space-y-3">
                 <a 
                     href="/planos" 
-                    class="hidden lg:flex items-center justify-center text-white font-medium text-base px-8 py-3 rounded-xl btn-plans"
+                    class="block text-center px-6 py-3 rounded-lg font-bold text-white bg-gradient-to-r from-[#122687] to-[#0D1439] hover:from-[#0D1439] hover:to-[#122687] transition-all duration-500 shadow-lg hover:shadow-xl flex items-center justify-center relative overflow-hidden min-w-[180px] h-12"
                 >
-                    Planos
+                    <span class="relative z-10 flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                        </svg>
+                        Planos
+                    </span>
+                    <span class="absolute inset-0 bg-gradient-to-r from-[#0D1439] to-[#122687] opacity-0 hover:opacity-100 transition-opacity duration-300"></span>
                 </a>
                 <a 
                     href="https://app.tucont.com.br/auth/login" 
-                    class="hidden lg:flex items-center justify-center text-white font-medium text-base px-8 py-3 rounded-xl btn-primary"
+                    class="block text-center px-6 py-3 rounded-lg font-bold text-white bg-gradient-to-r from-[#FF7B00] to-[#FF4D00] hover:from-[#FF4D00] hover:to-[#FF7B00] transition-all duration-500 shadow-lg hover:shadow-xl flex items-center justify-center relative overflow-hidden min-w-[180px] h-12"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    Acessar
+                    <span class="relative z-10 flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
+                        </svg>
+                        Acessar
+                    </span>
+                    <span class="absolute inset-0 bg-gradient-to-r from-[#FF4D00] to-[#FF7B00] opacity-0 hover:opacity-100 transition-opacity duration-300"></span>
                 </a>
-
             </div>
         </div>
-        
-        <!-- Menu Mobile -->
-        <nav class="flex flex-col w-full divide-y divide-orange-400/40 lg:hidden bg-[linear-gradient(120deg,rgba(255,120,0,0.15)_0%,rgba(255,80,0,0.08)_50%,rgba(255,120,0,0.15)_100%)] rounded-lg" id="menuContainer">
-            {menu.map((item) => {
-                const randomId = Math.random().toString(36).substring(2, 9);
-                return (
-                    <div class="relative">
-                     
-                        {item.submenu && (
-                            <div id={randomId} class="submenu-mobile hidden bg-[#5f5f5f] rounded-lg mx-4 mb-2 mt-1 overflow-hidden">
-                                {item.submenu.map((subitem) => (
-                                    <a 
-                                        href={subitem.link} 
-                                        class="block px-4 py-3 text-sm text-white hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-orange-400 hover:via-amber-300 hover:to-orange-500 transition-all duration-200"
-                                        target={subitem.target || undefined}
-                                        rel={subitem.target ? 'noopener noreferrer' : undefined}
-                                    >
-                                        {subitem.label}
-                                        <div class="h-px bg-gray-500 mt-2 last:hidden"></div>
-                                    </a>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-                )
-            })}
-            <a 
-                href="/planos" 
-                class="btn-plans text-base font-medium px-8 py-3 rounded-xl my-4 text-center"
-            >
-                Planos
-            </a>
-            <a 
-                href="https://app.tucont.com.br/auth/login" 
-                class="btn-primary text-base font-medium px-8 py-3 rounded-xl my-4 text-center"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Acessar
-            </a>
-        </nav>
     </div>
-    <div class="h-px w-full bg-gradient-to-r from-transparent via-orange-500 to-transparent"></div>
 </header>
 
 <script is:inline>
     document.addEventListener('DOMContentLoaded', () => {
-        const svgMenu = document.getElementById('svg-menu');
-        const menuContainer = document.getElementById('menuContainer');
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
 
-        // Toggle menu mobile
-        if (svgMenu && menuContainer) {
-            svgMenu.addEventListener('click', () => {
-                svgMenu.classList.toggle('active');
-                menuContainer.classList.toggle('hidden');
+        // Toggle mobile menu
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                
+                // Toggle icon between menu and close
+                const icon = mobileMenuButton.querySelector('svg');
+                if (icon) {
+                    if (mobileMenu.classList.contains('hidden')) {
+                        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
+                    } else {
+                        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>';
+                    }
+                }
             });
         }
 
-        // Toggle submenus mobile
+        // Toggle submenus in mobile
         document.querySelectorAll('[data-submenu]').forEach(link => {
             link.addEventListener('click', function(e) {
                 if (this.dataset.submenu) {
@@ -198,214 +254,87 @@ const menu = [
 </script>
 
 <style>
-    .menu-container {
-        position: relative;
-        border: none;
+    /* Animação do gradiente na barra superior */
+    @keyframes gradient-x {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
     }
 
-    .menu-container::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-radius: 0.5rem;
-        padding: 1px;
-        background: linear-gradient(135deg, rgba(255,145,0,0.5), rgba(255,94,0,0.3), rgba(255,145,0,0.5));
-        -webkit-mask: 
-            linear-gradient(#fff 0 0) content-box, 
-            linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        pointer-events: none;
+    .animate-gradient-x {
+        background-size: 200% 200%;
+        animation: gradient-x 8s ease infinite;
     }
 
-    .ham {
-        cursor: pointer;
-        -webkit-tap-highlight-color: transparent;
-        transition: transform 400ms;
-        -moz-user-select: none;
-        -webkit-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        box-sizing: content-box !important;
-    }
-
-    .hamRotate.active {
-        transform: rotate(45deg);
-    }
-
-    .line {
-        fill:none;
-        transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
-        stroke-width:5.5;
-        stroke-linecap:round;
-    }
-
-    .ham4 .top {
-        stroke-dasharray: 40 121;
-    }
-
-    .ham4 .bottom {
-        stroke-dasharray: 40 121;
-    }
-
-    .ham4.active .top {
-        stroke-dashoffset: -68px;
-    }
-
-    .ham4.active .bottom {
-        stroke-dashoffset: -68px;
-    }
-
-    /* Botão Padrão Reutilizável */
+    /* Efeitos especiais nos botões */
     .btn-primary {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none !important;
-        color: white !important;
-        font-size: 1rem;
-        font-weight: 500;
-        padding: 0.75rem 2rem;
-        min-width: 180px;
-        height: 48px;
-        border-radius: 12px;
-        background: linear-gradient(to right, #f59e0b 20%, #ea580c 80%);
-        box-shadow: 0 0 8px rgba(255, 165, 0, 0.5),
-                    0 0 15px rgba(255, 100, 0, 0.3);
-        transition: all 0.3s ease;
         position: relative;
         overflow: hidden;
-        border: none;
-        outline: none;
-        cursor: pointer;
+        z-index: 1;
     }
 
-    .btn-primary:hover, 
-    .btn-primary:focus {
-        transform: scale(1.05);
-        box-shadow: 0 0 12px rgba(255, 195, 0, 0.7),
-                    0 0 25px rgba(255, 120, 0, 0.5),
-                    0 0 35px rgba(255, 80, 0, 0.3);
-        filter: brightness(1.1);
-        text-decoration: none !important;
-    }
-
-    /* Efeito de brilho interno no hover */
     .btn-primary::before {
         content: '';
         position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(
-            circle, 
-            rgba(255, 230, 0, 0.2) 0%, 
-            transparent 70%
-        );
-        transform: scale(0);
-        transition: transform 0.5s ease;
-        opacity: 0;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.1) 100%);
+        transform: translateX(-100%);
+        transition: transform 0.6s ease;
+        z-index: -1;
     }
 
     .btn-primary:hover::before {
-        transform: scale(1);
-        opacity: 1;
+        transform: translateX(100%);
     }
 
-    /* Botão Planos - Estilo baseado no dropdown (#5f5f5f) */
-    .btn-plans {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none !important;
-        color: white !important;
-        font-size: 1rem;
-        font-weight: 500;
-        padding: 0.75rem 2rem;
-        min-width: 180px;
-        height: 48px;
-        border-radius: 12px;
-        background: linear-gradient(to right, #243dbd 20%, #122687 80%);
-        box-shadow: 0 0 8px rgba(100, 100, 100, 0.5),
-                    0 0 15px rgba(80, 80, 80, 0.3);
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-        border: none;
-        outline: none;
-        cursor: pointer;
+    /* Efeito de brilho interno */
+    .btn-glow {
+        box-shadow: 0 0 15px rgba(255, 123, 0, 0.5);
     }
 
-    .btn-plans:hover, 
-    .btn-plans:focus {
-        transform: scale(1.05);
-        box-shadow: 0 0 12px rgba(5, 20, 104, 0.7),
-                    0 0 25px rgba(29, 26, 218, 0.5),
-                    0 0 35px rgba(4, 7, 196, 0.3);
-        filter: brightness(1.1);
-        text-decoration: none !important;
-        background: linear-gradient(to right, #1905ce 20%, #0a17cc 80%);
+    .btn-glow:hover {
+        box-shadow: 0 0 20px rgba(255, 123, 0, 0.7), 
+                    0 0 30px rgba(255, 123, 0, 0.4);
     }
 
-    /* Efeito de brilho interno no hover */
-    .btn-plans::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(
-            circle, 
-            rgba(255, 255, 255, 0.15) 0%, 
-            transparent 70%
-        );
-        transform: scale(0);
-        transition: transform 0.5s ease;
-        opacity: 0;
+    /* Transições suaves */
+    .transition-all {
+        transition-property: all;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 300ms;
     }
 
-    .btn-plans:hover::before {
-        transform: scale(1);
-        opacity: 1;
+    /* Efeito de gradiente animado nos botões */
+    .bg-gradient-to-r {
+        background-size: 200% auto;
     }
 
-    /* Efeito de borda sutil no hover */
-    .btn-plans::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-radius: 12px;
-        padding: 1px;
-        background: linear-gradient(135deg, rgba(150, 150, 150, 0.26),rgba(200, 200, 200, 0.2), rgba(150, 150, 150, 0.4));
-        -webkit-mask: 
-            linear-gradient(#fff 0 0) content-box, 
-            linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        pointer-events: none;
-        opacity: 0;
-        transition: opacity 0.3s ease;
+    .hover\:from-\[\#0D1439\]:hover, .hover\:to-\[\#122687\]:hover,
+    .hover\:from-\[\#FF4D00\]:hover, .hover\:to-\[\#FF7B00\]:hover {
+        background-position: right center;
     }
 
-    .btn-plans:hover::after {
-        opacity: 1;
+    /* Sombra mais pronunciada */
+    .shadow-xl {
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     }
 
-    .rotate-180 {
-        transform: rotate(180deg);
-        
-    }
-        .separate-line {
-        background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(255,120,0,1) 50%, rgba(0,0,0,0) 100%);
-        box-shadow: 0 0 15px rgba(255, 120, 0, 0.8);
+    /* Efeito de escala nos botões */
+    .hover\:scale-\[1\.02\]:hover {
+        transform: scale(1.02);
     }
 
+    /* Efeito de sublinhado animado */
+    .group:hover .group-hover\:w-3\/4 {
+        width: 75%;
+    }
 </style>
