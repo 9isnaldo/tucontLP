@@ -60,12 +60,17 @@
             </a>
         </div>
 
-        <!-- Linha separadora APÓS os botões -->
-        <div class="h-px w-full bg-gradient-to-r from-transparent via-orange-500 to-transparent"></div>
+        <!-- Linha separadora APÓS os botões - MODIFICADA -->
+        <div class="h-1 w-full bg-gradient-to-r from-transparent via-[#E3E8FF] to-transparent"></div>
     </div>
 </section>
 
 <style>
+    
+    .subtitle {
+        display: inline-block;
+        margin-bottom: 1.5rem;
+    }
     /* Efeitos Neon Suaves */
     .soft-neon-text {
         text-shadow: 0 0 4px rgba(255, 145, 0, 0.4), 
@@ -127,11 +132,6 @@
     .btn-primary:hover::before {
         transform: scale(1);
         opacity: 1;
-    }
-
-    /* Linha separadora com gradiente */
-    .separate-line {
-        background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(255,145,0,1) 50%, rgba(0,0,0,0) 100%);
     }
 
     .feature-card {
@@ -238,8 +238,4 @@
         color: rgba(255, 255, 255, 0.9);
     }
 
-    .subtitle {
-        display: inline-block;
-        margin-bottom: 1.5rem;
-    }
 </style>

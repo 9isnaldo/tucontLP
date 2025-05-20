@@ -1,0 +1,111 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Sobre">
+  <main class="text-white">
+    <section class="py-6">
+    <div class="container mx-auto">
+        <div class="subtitle text-[1.1rem] font-semibold mt-10">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 from-10% via-amber-300 via-40% to-orange-500 to-90% soft-neon-text">SOBRE NÓS</span>
+        </div>
+        <!-- TEXTO 1-->
+        <div class="ssm:px-2 sm:px-16 md:px-0">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="order-1 md:order-1">
+                    <div class="flex flex-col items-center md:items-start mt-6">
+                        <h2 class="ssm:text-3xl sm:text-4xl md:text-5xl font-extrabold text-white text-center md:text-left">
+                            O que é a <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 from-10% via-amber-300 via-40% to-orange-500 to-90% soft-neon-text">Tucont?</span>
+                        </h2>
+                        
+                        <p class="mt-4 md:mt-6 text-[1.35rem] leading-6 font-semibold text-white/90 text-center md:text-left max-w-[90%] md:max-w-full">
+                            A Tucont é uma DNVB - Digital Native Vertical Brand, empresa humanizada e digital desde sua criação. Nascemos do sonho do nosso fundador, <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 from-10% via-amber-300 via-40% to-orange-500 to-90% soft-neon-text">Geraldo Oliveira</span> (Infoco e Iuptec), em mudar a sociedade, pelo despertar do empreendedorismo e acesso as oportunidades. <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 from-10% via-amber-300 via-40% to-orange-500 to-90% soft-neon-text">"Depois de criar, inspirar e ajudar mais de 30 negócios, tínhamos o dever de impactar mais empreendedores."</span> Integramos em uma única plataforma, a Contabilidade, o Empreendedorismo e a Tecnologia adequada.
+                        </p>
+
+                    </div>
+                                        <div class="flex flex-col items-center md:items-start mt-14">
+                        <h2 class="ssm:text-3xl sm:text-4xl md:text-5xl font-extrabold text-white text-center md:text-left">
+                            Nosso CEO explica o que é a <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 from-10% via-amber-300 via-40% to-orange-500 to-90% soft-neon-text">Contabilidade Integrativa</span>
+                        </h2>
+                        
+                        <p class="mt-4 md:mt-6 text-[1.35rem] leading-6 font-semibold text-white/90 text-center md:text-left max-w-[90%] md:max-w-full">
+                            A Contabilidade Integrativa uma modalidade de serviços que participa efetivamente da sua jornada empreendedora, percorrendo com você e sua empresa, as duas principais avenidas, a do negócio (produto, mercado, vendas) e a contábil (legalização, tributos, etc.). Para que todos atinjamos nossos objetivos, é preciso reunir educação empreendedora, processos, tecnologia e pessoas, uma abundância delas, sejam jurídicas ou físicas. Acompanhe nossos conteúdos e fique por dentro dos temas que interessam e integram sua empresa.  
+                        </p>
+                    </div>
+                </div>                
+                <div class="order-2 md:order-2 ">
+                    <img src="/src/images/ceo.webp" alt="Geraldo Oliveira" class="w-full h-auto rounded-lg">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="w-full flex justify-center mb-14 mt-10">
+        <a href="#" class="btn-primary">
+            Quero ser integrativo
+        </a>
+    </div>
+    <div class="h-1 w-full bg-gradient-to-r from-transparent via-[#E3E8FF] to-transparent"></div>
+</section>
+  </main>
+</Layout>
+
+<style is:global>
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.75rem 2rem;
+    min-width: 180px;
+    height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(to right, #f59e0b 20%, #ea580c 80%);
+    box-shadow: 0 0 8px rgba(255, 165, 0, 0.5),
+                0 0 15px rgba(255, 100, 0, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover, 
+  .btn-primary:focus {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(255, 195, 0, 0.7),
+                0 0 25px rgba(255, 120, 0, 0.5),
+                0 0 35px rgba(255, 80, 0, 0.3);
+    filter: brightness(1.1);
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle, 
+        rgba(255, 230, 0, 0.2) 0%, 
+        transparent 70%
+    );
+    transform: scale(0);
+    transition: transform 0.5s ease;
+    opacity: 0;
+  }
+
+  .btn-primary:hover::before {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .soft-neon-text {
+    text-shadow: 0 0 4px rgba(255, 145, 0, 0.4), 
+                 0 0 8px rgba(255, 94, 0, 0.3);
+  }
+</style>
