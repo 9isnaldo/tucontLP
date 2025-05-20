@@ -9,16 +9,16 @@ let categoriaAtiva = "servicos";
 <div class="py-16">
   <div class="container mx-auto">
     <!-- Botões de navegação -->
-    <div class="flex justify-center gap-4 mb-12 flex-wrap">
+    <div class="flex justify-center gap-8 mb-12 flex-wrap">
       {Object.keys(categorias).map((key) => {
         const categoria = categorias[key];
         return (
           <button
             data-categoria={key}
-            class={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
+            class={`px-8 py-3 rounded-xl font-medium transition-all duration-300 ${
               categoriaAtiva === key
-                ? 'text-white bg-gradient-to-r from-amber-500 from-20% to-orange-600 to-80% soft-neon-button'
-                : 'btn-plans-inactive text-white border-none'
+                ? 'btn-primary'
+                : 'btn-plans text-white'
             }`}
           >
             {categoria.titulo}
@@ -49,7 +49,7 @@ let categoriaAtiva = "servicos";
                         <span class="text-sm mb-1 text-gray-400">{plano.periodo}</span>
                       </div>
                       
-                      <button class="mt-6 w-full max-w-[240px] mx-auto text-white text-base font-medium bg-gradient-to-r from-amber-500 from-20% to-orange-600 to-80% px-8 py-3 rounded-xl hover:brightness-105 transition-all duration-300 soft-neon-button">
+                      <button class="btn-primary mt-6 w-full max-w-[240px] mx-auto">
                         Contrate agora
                       </button>
                     </div>
@@ -97,12 +97,12 @@ let categoriaAtiva = "servicos";
         
         // Atualiza o estado ativo dos botões
         buttons.forEach(btn => {
-          btn.classList.remove('bg-gradient-to-r', 'from-amber-500', 'from-20%', 'to-orange-600', 'to-80%', 'soft-neon-button');
-          btn.classList.add('btn-plans-inactive', 'text-white', 'border-none');
+          btn.classList.remove('btn-primary');
+          btn.classList.add('btn-plans', 'text-white');
         });
         
-        target.classList.remove('btn-plans-inactive', 'text-white', 'border-none');
-        target.classList.add('bg-gradient-to-r', 'from-amber-500', 'from-20%', 'to-orange-600', 'to-80%', 'soft-neon-button');
+        target.classList.remove('btn-plans', 'text-white');
+        target.classList.add('btn-primary');
       });
     });
   });
@@ -114,45 +114,6 @@ let categoriaAtiva = "servicos";
                  0 0 8px rgba(255, 94, 0, 0.3);
   }
 
-  .soft-neon-button {
-    box-shadow: 0 0 6px rgba(255, 145, 0, 0.4), 
-               0 0 12px rgba(255, 94, 0, 0.2);
-    transition: all 0.3s ease;
-  }
-
-  .soft-neon-button:hover {
-    box-shadow: 0 0 8px rgba(255, 145, 0, 0.6), 
-               0 0 16px rgba(255, 94, 0, 0.4);
-    transform: translateY(-2px);
-  }
-
-  .transition-all {
-    transition-property: all;
-  }
-
-  .duration-300 {
-    transition-duration: 300ms;
-  }
-
-  /* Estilo para botões inativos (baseado no botão Planos) */
-  .btn-plans-inactive {
-    background: linear-gradient(to right, #6f6f6f 20%, #5f5f5f 80%);
-    box-shadow: 0 0 8px rgba(100, 100, 100, 0.5),
-                0 0 15px rgba(80, 80, 80, 0.3);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .btn-plans-inactive:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 12px rgba(120, 120, 120, 0.7),
-                0 0 25px rgba(100, 100, 100, 0.5),
-                0 0 35px rgba(80, 80, 80, 0.3);
-    filter: brightness(1.1);
-    background: linear-gradient(to right, #7f7f7f 20%, #6f6f6f 80%);
-  }
-
   /* Efeito de borda fluorescente */
   .fluorescent-border {
     position: relative;
@@ -161,5 +122,126 @@ let categoriaAtiva = "servicos";
     box-shadow: 0 0 10px rgba(227, 232, 255, 0.5),
                 0 0 20px rgba(227, 232, 255, 0.3),
                 inset 0 0 10px rgba(227, 232, 255, 0.3);
+  }
+
+  /* Botão Primário (Laranja - igual ao "Abrir Empresa") */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: white !important;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.75rem 2rem;
+    min-width: 180px;
+    height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(to right, #f59e0b 20%, #ea580c 80%);
+    box-shadow: 0 0 8px rgba(255, 165, 0, 0.5),
+                0 0 15px rgba(255, 100, 0, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    text-decoration: none !important;
+  }
+
+  .btn-primary:hover, 
+  .btn-primary:focus {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(255, 195, 0, 0.7),
+                0 0 25px rgba(255, 120, 0, 0.5),
+                0 0 35px rgba(255, 80, 0, 0.3);
+    filter: brightness(1.1);
+  }
+
+  /* Efeito de brilho interno no hover */
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle, 
+        rgba(255, 230, 0, 0.2) 0%, 
+        transparent 70%
+    );
+    transform: scale(0);
+    transition: transform 0.5s ease;
+    opacity: 0;
+  }
+
+  .btn-primary:hover::before {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  /* Botão Planos (Azul - igual ao "Migrar para Tucont") */
+  .btn-plans {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: white !important;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.75rem 2rem;
+    min-width: 180px;
+    height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(to right, #243dbd 20%, #122687 80%);
+    box-shadow: 0 0 8px rgba(36, 61, 189, 0.5),
+                0 0 15px rgba(18, 38, 135, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    text-decoration: none !important;
+  }
+
+  .btn-plans:hover, 
+  .btn-plans:focus {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(5, 20, 104, 0.7),
+                0 0 25px rgba(29, 26, 218, 0.5),
+                0 0 35px rgba(4, 7, 196, 0.3);
+    filter: brightness(1.1);
+    background: linear-gradient(to right, #1905ce 20%, #0a17cc 80%);
+  }
+
+  /* Efeito de brilho interno no hover */
+  .btn-plans::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle, 
+        rgba(255, 255, 255, 0.15) 0%, 
+        transparent 70%
+    );
+    transform: scale(0);
+    transition: transform 0.5s ease;
+    opacity: 0;
+  }
+
+  .btn-plans:hover::before {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .transition-all {
+    transition-property: all;
+  }
+
+  .duration-300 {
+    transition-duration: 300ms;
   }
 </style>
