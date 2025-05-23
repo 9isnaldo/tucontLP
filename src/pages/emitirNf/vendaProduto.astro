@@ -1,0 +1,456 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Emissão de Nota Fiscal">
+  <main class="text-black bg-[#FFFDFD]">
+    <section class="py-8">
+      <div class="container mx-auto px-4">
+        <h1 class="text-3xl font-bold mb-8 text-center soft-neon-text">Emissão de Nota Fiscal</h1>
+        
+        <form class="w-full bg-white p-8 rounded-xl shadow-lg">
+          {/* Seção de Dados do Cliente */}
+          <div class="mb-8">
+            <h2 class="text-xl font-semibold mb-4 border-b pb-2">Dados do Cliente</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Tipo de Pessoa */}
+              <div>
+                <label for="tipoPessoa" class="block text-sm font-medium mb-1">Tipo de Pessoa</label>
+                <select id="tipoPessoa" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-400">
+                  <option value="">Selecione...</option>
+                  <option value="fisica">Pessoa Física</option>
+                  <option value="juridica">Pessoa Jurídica</option>
+                </select>
+              </div>
+              
+              {/* CNPJ/CPF - Campo modificado para identificar automaticamente */}
+              <div>
+                <label for="cnpjCpf" class="block text-sm font-medium mb-1" id="labelCnpjCpf">CPF/CNPJ</label>
+                <input 
+                  type="text" 
+                  id="cnpjCpf" 
+                  placeholder="Digite CPF ou CNPJ" 
+                  class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-400"
+                />
+              </div>
+              
+              {/* Razão Social */}
+              <div class="md:col-span-2">
+                <label for="razaoSocial" class="block text-sm font-medium mb-1">Razão Social/Nome</label>
+                <input 
+                  type="text" 
+                  id="razaoSocial" 
+                  placeholder="Razão Social ou Nome Completo" 
+                  class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-400"
+                />
+              </div>
+              
+              {/* Email */}
+              <div>
+                <label for="email" class="block text-sm font-medium mb-1">E-mail</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  placeholder="exemplo@dominio.com" 
+                  class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-400"
+                />
+              </div>
+              
+              {/* Telefone */}
+              <div>
+                <label for="telefone" class="block text-sm font-medium mb-1">Telefone</label>
+                <input 
+                  type="tel" 
+                  id="telefone" 
+                  placeholder="99 99999-9999" 
+                  class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-400"
+                />
+              </div>
+            </div>
+          </div>
+          
+          {/* Seção de Endereço */}
+          <div class="mb-8">
+            <h2 class="text-xl font-semibold mb-4 border-b pb-2">Endereço</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+              {/* CEP - 2 colunas */}
+              <div class="md:col-span-2">
+                <label for="cep" class="block text-sm font-medium mb-1">CEP</label>
+                <input 
+                  type="text" 
+                  id="cep" 
+                  placeholder="00000-000" 
+                  class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-400"
+                />
+              </div>
+              
+              {/* Logradouro - 5 colunas */}
+              <div class="md:col-span-5">
+                <label for="logradouro" class="block text-sm font-medium mb-1">Logradouro</label>
+                <input 
+                  type="text" 
+                  id="logradouro" 
+                  placeholder="Rua/Avenida/Alameda" 
+                  class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-400"
+                />
+              </div>
+              
+              {/* Número - 2 colunas */}
+              <div class="md:col-span-2">
+                <label for="numero" class="block text-sm font-medium mb-1">Número</label>
+                <input 
+                  type="text" 
+                  id="numero" 
+                  placeholder="Nº" 
+                  class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-400"
+                />
+              </div>
+              
+              {/* Complemento - 3 colunas */}
+              <div class="md:col-span-3">
+                <label for="complemento" class="block text-sm font-medium mb-1">Complemento</label>
+                <input 
+                  type="text" 
+                  id="complemento" 
+                  placeholder="Complemento (opcional)" 
+                  class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-400"
+                />
+              </div>
+              
+              {/* Bairro - 4 colunas */}
+              <div class="md:col-span-4">
+                <label for="bairro" class="block text-sm font-medium mb-1">Bairro</label>
+                <input 
+                  type="text" 
+                  id="bairro" 
+                  placeholder="Bairro" 
+                  class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-400"
+                />
+              </div>
+              
+              {/* Cidade - 5 colunas */}
+              <div class="md:col-span-5">
+                <label for="cidade" class="block text-sm font-medium mb-1">Cidade</label>
+                <input 
+                  type="text" 
+                  id="cidade" 
+                  placeholder="Cidade" 
+                  class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-400"
+                />
+              </div>
+              
+              {/* Estado - 3 colunas */}
+              <div class="md:col-span-3">
+                <label for="estado" class="block text-sm font-medium mb-1">Estado</label>
+                <input 
+                  type="text" 
+                  id="estado" 
+                  placeholder="UF" 
+                  class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-400"
+                />
+              </div>
+            </div>
+          </div>
+          
+          {/* Seção de Dados da Venda */}
+          <div class="mb-8">
+            <h2 class="text-xl font-semibold mb-4 border-b pb-2">Dados da Venda</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              {/* Data da Venda */}
+              <div>
+                <label for="dataVenda" class="block text-sm font-medium mb-1">Data da Venda</label>
+                <input 
+                  type="date" 
+                  id="dataVenda" 
+                  class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-400"
+                />
+              </div>
+              
+              {/* Data do Vencimento */}
+              <div>
+                <label for="dataVencimento" class="block text-sm font-medium mb-1">Data do Vencimento</label>
+                <input 
+                  type="date" 
+                  id="dataVencimento" 
+                  class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-400"
+                />
+              </div>
+            </div>
+            
+            {/* Tipo de Venda/Produto */}
+            <div class="mb-4">
+              <label for="tipoVenda" class="block text-sm font-medium mb-1">Tipo</label>
+              <select id="tipoVenda" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-400">
+                <option value="">Selecione...</option>
+                <option value="venda">Venda</option>
+                <option value="produto">Produto</option>
+              </select>
+            </div>
+            
+            {/* Produto */}
+            <div class="mb-4">
+              <label for="produto" class="block text-sm font-medium mb-1">Produto</label>
+              <select id="produto" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-400">
+                <option value="">Selecione um produto...</option>
+                <option value="1">Produto 1</option>
+                <option value="2">Produto 2</option>
+                <option value="3">Produto 3</option>
+                <option value="4">Produto 4</option>
+                <option value="5">Produto 5</option>
+              </select>
+            </div>
+            
+            {/* Itens da Venda */}
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Quantidade */}
+              <div>
+                <label for="quantidade" class="block text-sm font-medium mb-1">Quantidade</label>
+                <input 
+                  type="number" 
+                  id="quantidade" 
+                  min="1" 
+                  class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-400"
+                />
+              </div>
+              
+              {/* Preço Unitário */}
+              <div>
+                <label for="precoUnitario" class="block text-sm font-medium mb-1">Preço/Unidade</label>
+                <input 
+                  type="text" 
+                  id="precoUnitario" 
+                  class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-400"
+                  placeholder="R$ 0,00"
+                />
+              </div>
+              
+              {/* Subtotal */}
+              <div>
+                <label for="subtotal" class="block text-sm font-medium mb-1">Subtotal</label>
+                <input 
+                  type="text" 
+                  id="subtotal" 
+                  readonly 
+                  class="w-full px-4 py-2 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-orange-300 focus:border-orange-400"
+                  placeholder="R$ 0,00"
+                />
+              </div>
+            </div>
+          </div>
+          
+          {/* Botão de Submissão */}
+          <div class="flex justify-center mt-8">
+            <button type="submit" class="btn-primary">
+              Efetuar Venda e Emitir Nota
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style is:global>
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.75rem 2rem;
+    min-width: 180px;
+    height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(to right, #10b981 20%, #059669 80%);
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.5),
+                0 0 15px rgba(5, 150, 105, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover, 
+  .btn-primary:focus {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.7),
+                0 0 25px rgba(5, 150, 105, 0.5),
+                0 0 35px rgba(5, 150, 105, 0.3);
+    filter: brightness(1.1);
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle, 
+        rgba(16, 185, 129, 0.2) 0%, 
+        transparent 70%
+    );
+    transform: scale(0);
+    transition: transform 0.5s ease;
+    opacity: 0;
+  }
+
+  .btn-primary:hover::before {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .soft-neon-text {
+    text-shadow: 0 0 4px rgba(16, 185, 129, 0.4), 
+                 0 0 8px rgba(5, 150, 105, 0.3);
+  }
+
+  /* Estilo para campos de entrada */
+  input, select {
+    transition: all 0.2s ease;
+  }
+
+  input:focus, select:focus {
+    outline: none;
+    border-color: #f59e0b;
+  }
+</style>
+
+<script is:inline>
+  // Identificação automática de CPF/CNPJ e aplicação de máscara
+  document.getElementById('cnpjCpf')?.addEventListener('input', function(e) {
+    let value = e.target.value.replace(/\D/g, '');
+    const labelElement = document.getElementById('labelCnpjCpf');
+    
+    // Identifica se é CPF (11 dígitos) ou CNPJ (14 dígitos)
+    if (value.length <= 11) {
+      // CPF
+      if (value.length > 11) value = value.substring(0, 11);
+      
+      // Aplica máscara de CPF
+      if (value.length > 0) {
+        value = value.replace(/^(\d{3})(\d)/, '$1.$2');
+        if (value.length > 6) {
+          value = value.replace(/(\d{3})(\d)/, '$1.$2');
+        }
+        if (value.length > 10) {
+          value = value.replace(/(\d{3})(\d)/, '$1-$2');
+        }
+      }
+      
+      labelElement.textContent = 'CPF';
+    } else {
+      // CNPJ
+      if (value.length > 14) value = value.substring(0, 14);
+      
+      // Aplica máscara de CNPJ
+      if (value.length > 0) {
+        value = value.replace(/^(\d{2})(\d)/, '$1.$2');
+        if (value.length > 6) {
+          value = value.replace(/(\d{3})(\d)/, '$1.$2');
+        }
+        if (value.length > 10) {
+          value = value.replace(/(\d{3})(\d)/, '$1/$2');
+        }
+        if (value.length > 15) {
+          value = value.replace(/(\d{4})(\d)/, '$1-$2');
+        }
+      }
+      
+      labelElement.textContent = 'CNPJ';
+    }
+    
+    e.target.value = value;
+  });
+
+  // Máscara para telefone
+  document.getElementById('telefone')?.addEventListener('input', function(e) {
+    let value = e.target.value.replace(/\D/g, '');
+    if (value.length > 11) value = value.substring(0, 13);
+    
+    if (value.length > 0) {
+      value = value.replace(/^(\d{2})(\d)/g, '$1 $2');
+      if (value.length > 4) {
+        value = value.replace(/(\d{5})(\d)/, '$1-$2');
+      }
+      if (value.length > 10) {
+        value = value.substring(0, 13);
+      }
+    }
+    
+    e.target.value = value;
+  });
+
+  // Formatação de moeda para preço unitário
+  document.getElementById('precoUnitario')?.addEventListener('input', function(e) {
+    let value = e.target.value.replace(/\D/g, '');
+    value = (value / 100).toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    });
+    e.target.value = value;
+  });
+
+  // Cálculo do subtotal
+  document.getElementById('quantidade')?.addEventListener('input', calcularSubtotal);
+  document.getElementById('precoUnitario')?.addEventListener('input', calcularSubtotal);
+
+  function calcularSubtotal() {
+    const quantidade = parseFloat(document.getElementById('quantidade').value) || 0;
+    const precoUnitario = document.getElementById('precoUnitario').value;
+    const preco = parseFloat(precoUnitario.replace(/\D/g, '')) / 100 || 0;
+    
+    const subtotal = quantidade * preco;
+    
+    document.getElementById('subtotal').value = subtotal.toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    });
+  }
+
+  // Buscar CEP
+  document.getElementById('cep')?.addEventListener('blur', function(e) {
+    const cep = e.target.value.replace(/\D/g, '');
+    if (cep.length === 8) {
+      fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(response => response.json())
+        .then(data => {
+          if (!data.erro) {
+            document.getElementById('logradouro').value = data.logradouro || '';
+            document.getElementById('bairro').value = data.bairro || '';
+            document.getElementById('cidade').value = data.localidade || '';
+            document.getElementById('estado').value = data.uf || '';
+          }
+        })
+        .catch(error => console.error('Erro ao buscar CEP:', error));
+    }
+  });
+
+  // Atualiza o tipo de documento quando o select é alterado
+  document.getElementById('tipoPessoa')?.addEventListener('change', function(e) {
+    const cnpjCpfInput = document.getElementById('cnpjCpf');
+    const labelElement = document.getElementById('labelCnpjCpf');
+    
+    if (e.target.value === 'fisica') {
+      labelElement.textContent = 'CPF';
+      cnpjCpfInput.placeholder = '000.000.000-00';
+    } else if (e.target.value === 'juridica') {
+      labelElement.textContent = 'CNPJ';
+      cnpjCpfInput.placeholder = '00.000.000/0000-00';
+    } else {
+      labelElement.textContent = 'CPF/CNPJ';
+      cnpjCpfInput.placeholder = 'Digite CPF ou CNPJ';
+    }
+    
+    // Limpa o campo quando muda o tipo
+    cnpjCpfInput.value = '';
+  });
+</script>
